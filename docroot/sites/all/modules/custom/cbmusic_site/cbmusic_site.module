@@ -1,0 +1,22 @@
+<?php
+/**
+ * @file
+ * Module file for the custom CB Music module
+ */
+/**
+ * Implements hook_menu
+ */
+/*function cbmusic_site_menu() {
+  $items = array();
+  
+  $items['coming-soon'] = array(
+    'title' => 'New Website Coming Soon',
+    'description' => 'New website and EP coming soon landing page',
+    'access callback' => TRUE,
+    'page callback' => 'cbmusic_site_page_coming_soon',
+    'file' => 'includes/cbmusic_site.page.coming_soon.inc',
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  return $items;
+}*/
