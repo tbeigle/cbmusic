@@ -1,0 +1,118 @@
+<?php
+/**
+ * @file
+ * Module file for the SongKick artist information importer
+ */
+
+/**
+ * Implements hook_ctools_plugin_api()
+ */
+function songkick_ctools_plugin_api($owner, $api) {
+  if ($owner == 'feeds' && $api == 'plugins') {
+    return array('version' => 1);
+  }
+}
+
+/*
+ * Implements hook_feeds_plugins()
+ *
+ * @see feeds_feeds_plugin()
+ */
+function songkick_feeds_plugins() {
+  $plugins_path = drupal_get_path('module', 'songkick') . '/plugins';
+  
+  $info = array();
+  
+  $info['SongkickArtistCalendarFetcher'] = array(
+    'name' => 'SongKick Artist Calendar Fetcher',
+    'description' => 'Fetches an artist calendar from SongKick.',
+    'help' => 'Fetches an artist calendar from SongKick using the SongKick API call.',
+    'handler' => array(
+      'parent' => 'FeedsFetcher',
+      'class' => 'SongkickArtistCalendarFetcher',
+      'file' => 'SongkickArtistCalendarFetcher.inc',
+      'path' => $plugins_path,
+    ),
+  );
+  
+  $info['SongkickArtistCalendarParser'] = array(
+    'name' => 'SongKick Artist Calendar Parser',
+    'description' => 'Parses imported SongKick artist calendar items.',
+    'help' => 'Parses SongKick artist calendar items imported with the SongKick Artist Calendar Fetcher.',
+    'handler' => array(
+      'parent' => 'FeedsParser', // Being directly or indirectly an extension of FeedsParser makes a plugin a parser plugin.
+      'class' => 'SongkickArtistCalendarParser',
+      'file' => 'SongkickArtistCalendarParser.inc',
+      'path' => $plugins_path,
+    ),
+  );
+  
+  $info['SongkickArtistCalendarProcessor'] = array(
+    'name' => 'SongKick Artist Calendar Processor',
+    'description' => 'Processes SongKick artist calendar items.',
+    'help' => 'Proccesses SongKick artist calendar items imported with the SongKick Artist Calendar Fetcher.',
+    'handler' => array(
+      'parent' => 'FeedsProcessor',
+      'class' => 'SongkickArtistCalendarProcessor',
+      'file' => 'SongkickArtistCalendarProcessor.inc',
+      'path' => $plugins_path,
+    ),
+  );
+  
+  return $info;
+}
+
+/**
+ * Implements hook_menu()
+ */
+function songkick_menu() {
+  $items = array();
+  
+  $items['admin/config/services/songkick'] = array(
+    'title' => 'SongKick Settings',
+    'description' => 'SongKick API and configuration settings',
+    'page callback' => 'songkick_admin_settings',
+    'access arguments' => array('administer songkick'),
+    'type' => MENU_NORMAL_ITEM,
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_permission()
+ */
+function songkick_permission() {
+  return array(
+    'administer songkick' => array(
+      'title' => t('Administer SongKick'),
+      'restrict access' => TRUE,
+    ),
+    'create songkick artist feeds' => array(
+      'title' => t('Create SongKick artist feeds'),
+    ),
+    'edit songkick artist feeds' => array(
+      'title' => t('Edit SongKick artist feeds'),
+    ),
+    'delete songkick artist feeds' => array(
+      'title' => t('Delete SongKick artist feeds'),
+    ),
+  );
+}
+
+/**
+ * Page callback - Admin settings form
+ */
+function songkick_admin_settings($form, &$form_state) {
+  $form = array();
+  
+  $apply_link = l(t('apply to SongKick'), 'http://www.songkick.com/api_key_requests/new', array('attributes' => array('target' => '_blank')));
+  $form['songkick_api_key'] = array(
+    '#title' => t('API Key'),
+    '#description' => t('You must @apply_link for an API key.', array('@apply_link' => $apply_link)),
+    '#type' => 'textfield',
+    '#default_value' => variable_get('songkick_api_key', ''),
+  );
+  
+  return system_settings_form($form);
+}
