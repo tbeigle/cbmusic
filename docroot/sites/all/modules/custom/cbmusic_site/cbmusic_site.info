@@ -1,0 +1,4 @@
+name = CB Music Site Module
+description = General overrides and helpers for corybishopmusic.com
+core = 7.x
+package = CB
