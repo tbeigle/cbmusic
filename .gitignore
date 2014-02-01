@@ -3,4 +3,5 @@ dl
 *.sass-cache
 .htpasswd
 log
+tmp
 
