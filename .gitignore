@@ -1,3 +1,6 @@
 docs
 dl
 *.sass-cache
+.htpasswd
+log
+
