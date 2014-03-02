@@ -42,13 +42,19 @@
  *
  * @ingroup themeable
  */
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML+RDFa 1.0//EN"
-  "http://www.w3.org/MarkUp/DTD/xhtml-rdfa-1.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php print $language->language; ?>" version="XHTML+RDFa 1.0" dir="<?php print $language->dir; ?>"<?php print $rdf_namespaces; ?>>
+?>
+<!DOCTYPE html>
+<html lang="en">
 
 <head profile="<?php print $grddl_profile; ?>">
   <?php print $head; ?>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?php print $head_title; ?></title>
+  <?php if (!empty($html_shiv)): ?>
+    <!--[if lt IE 9]>
+      <script src="<?php print $html_shiv; ?>"></script>
+    <![endif]-->
+  <?php endif; ?>
   <?php print $styles; ?>
   <?php print $scripts; ?>
 </head>

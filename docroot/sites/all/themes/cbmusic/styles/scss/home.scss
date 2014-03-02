@@ -1,0 +1,75 @@
+@import "mixins";
+
+.cb-homepage {
+  #page-wrapper {
+    position: relative;
+    margin: auto;
+    
+    &> .inner {
+      background: #fff;
+    }
+    
+    header {
+      padding: 0;
+    }
+  }
+  
+  .block.new-ep-link {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    max-height: 540px;
+    overflow: hidden;
+    
+    .ep-title {
+      position: absolute;
+      z-index: 2;
+      left: 2.94%;
+      top: 110px;
+      width: 31.372%;
+      font-size: 42px;
+      line-height: 1.1;
+      
+      span {
+        display: block;
+      }
+    }
+    
+    .album-cover {
+      position: relative;
+      z-index: 1;
+      display: block;
+    }
+    
+    a {
+      &:link,
+      &:visited,
+      &:hover,
+      &:active,
+      &:focus {
+        color: #fff;
+        
+        .itunes {
+          @include vendorize(transition, all 0.25s ease);
+        }
+      }
+    }
+    
+    &:hover {
+      .ep-title a {
+        &:link,
+        &:visited,
+        &:hover,
+        &:active,
+        &:focus {
+          .itunes {
+            color: #4d4227;
+          }
+        }
+      }
+    }
+  }
+}
+
+.cb-home-header {
+}

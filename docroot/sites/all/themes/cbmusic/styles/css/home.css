@@ -1,0 +1,37 @@
+.cb-homepage #page-wrapper {
+  position: relative;
+  margin: auto; }
+  .cb-homepage #page-wrapper > .inner {
+    background: #fff; }
+  .cb-homepage #page-wrapper header {
+    padding: 0; }
+.cb-homepage .block.new-ep-link {
+  position: relative;
+  width: 100%;
+  max-width: 1020px;
+  max-height: 540px;
+  overflow: hidden; }
+  .cb-homepage .block.new-ep-link .ep-title {
+    position: absolute;
+    z-index: 2;
+    left: 2.94%;
+    top: 110px;
+    width: 31.372%;
+    font-size: 42px;
+    line-height: 1.1; }
+    .cb-homepage .block.new-ep-link .ep-title span {
+      display: block; }
+  .cb-homepage .block.new-ep-link .album-cover {
+    position: relative;
+    z-index: 1;
+    display: block; }
+  .cb-homepage .block.new-ep-link a:link, .cb-homepage .block.new-ep-link a:visited, .cb-homepage .block.new-ep-link a:hover, .cb-homepage .block.new-ep-link a:active, .cb-homepage .block.new-ep-link a:focus {
+    color: #fff; }
+    .cb-homepage .block.new-ep-link a:link .itunes, .cb-homepage .block.new-ep-link a:visited .itunes, .cb-homepage .block.new-ep-link a:hover .itunes, .cb-homepage .block.new-ep-link a:active .itunes, .cb-homepage .block.new-ep-link a:focus .itunes {
+      -webkit-transition: all 0.25s ease;
+      -moz-transition: all 0.25s ease;
+      -ms-transition: all 0.25s ease;
+      -o-transition: all 0.25s ease;
+      transition: all 0.25s ease; }
+  .cb-homepage .block.new-ep-link:hover .ep-title a:link .itunes, .cb-homepage .block.new-ep-link:hover .ep-title a:visited .itunes, .cb-homepage .block.new-ep-link:hover .ep-title a:hover .itunes, .cb-homepage .block.new-ep-link:hover .ep-title a:active .itunes, .cb-homepage .block.new-ep-link:hover .ep-title a:focus .itunes {
+    color: #4d4227; }
