@@ -1,10 +1,9 @@
-; Theme info file for the cbmusic theme
+; Info file for the cbmusic theme
 name = Cory Bishop
 description = Custom theme for corybishopmusic.com built by Tom Beigle
 core = 7.x
 
-;screenshot = images/screenshot.png
-
+; Features
 features[] = logo
 features[] = name
 features[] = slogan
@@ -15,25 +14,28 @@ features[] = favicon
 features[] = main_menu
 features[] = secondary_menu
 
+; Regions
+regions[logo] = Logo
 regions[header] = Header
-regions[highlighted] = Highlighted
-regions[help] = Help
-regions[content] = Content
-regions[sidebar_first] = Left sidebar
-regions[sidebar_second] = Right sidebar
+regions[nav] = Primary Navigation
+regions[sidebar_first] = Left Sidebar
+regions[content_top] = Content Top
+regions[content] = Main Content
+regions[sidebar_second] = Right Sidebar
+regions[content_bottom] = Content Bottom
 regions[footer] = Footer
 
-settings[toggle_logo] = 1
-settings[toggle_name] = 1
-settings[toggle_slogan] = 1
-settings[toggle_node_user_picture] = 1
-settings[toggle_comment_user_picture] = 1
-settings[toggle_comment_user_verification] = 1
-settings[toggle_favicon] = 1
-settings[toggle_main_menu] = 1
-settings[toggle_secondary_menu] = 1
-settings[toggle_breadcrumb] = 1
-
-stylesheets[all][] = styles/css/style.css
-
+; Scripts
 scripts[] = scripts/js/cbmusic.js
+
+; Settings
+settings[show_breadcrumb] = 1
+settings[site_footer] = Cory Bishop, All Rights Reserved
+settings[header_text] = Cory Bishop
+
+; Stylesheets
+stylesheets[all][] = styles/css/global.css
+stylesheets[all][] = styles/css/forms.css
+stylesheets[all][] = styles/css/home.css
+stylesheets[all][] = styles/css/landing-pages.css
+stylesheets[all][] = styles/css/media-queries.css

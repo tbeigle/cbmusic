@@ -1,0 +1,10 @@
+@import "mixins";
+
+@media screen and (max-width: 800px) {
+  // Homepage banner
+  .cb-homepage {
+    #page-wrapper {
+      background-size: cover;
+    }
+  }
+}
