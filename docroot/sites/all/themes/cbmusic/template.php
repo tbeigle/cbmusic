@@ -1,6 +1,16 @@
 <?php
 
 /**
+ * Implements template_preprocess_block()
+ */
+function cbmusic_preprocess_block(&$vars) {
+  // Defaults
+  $vars['title_tag'] = 'h2';
+  $vars['title_attributes_array']['class'][] = 'block-title';
+  $vars['content_attributes_array']['class'][] = 'content';
+}
+
+/**
  * Implements template_preprocess_html()
  */
 function cbmusic_preprocess_html(&$vars) {

@@ -29,13 +29,25 @@
 }
 
 h1,
+.cb-header-text,
 .ep-title {
-  font-family: vincentregular, Arial, Helvetica, sans-serif;
+  font-family: $fntSansSpecial;
+}
+.header-secondary {
+  position: relative;
+  z-index: 1;
+}
+.cb-header-text {
+  margin: 0;
+  line-height: 1.1;
 }
 
 a {
-  text-decoration: none;
-  @include hoverActiveFocus(text-decoration, none);
+  @include vendorize(transition, all 0.25s ease);
+  @include linkAllStates(text-decoration, none);
+  @include linkAllStates(outline, none);
+  @include linkVisited(color, $colPreEPJacket);
+  @include hoverActiveFocus(color, $colDenim);
 }
 
 body {
@@ -54,6 +66,15 @@ body {
   width: 100%;
   max-width: 1020px;
   margin: auto;
+}
+
+ul.tweets {
+  padding: 0;
+  margin: 0;
+  
+  li {
+    list-style: none;
+  }
 }
 
 // error pages
@@ -99,8 +120,6 @@ body {
   @include vendorize(box-shadow, 0 0 5px 5px rgba(0,0,0,0.4));
   
   a {
-    @include vendorize(transition, all 0.25s ease);
-    
     &:link,
     &:visited {
       color: #fff;
@@ -141,7 +160,7 @@ body {
     .content ul {
       padding: 0;
       margin: 0;
-      font: 24px/1.1 vincentregular, Arial, Helvetica, sans-serif;
+      font: 24px/1.1 $fntSansSpecial;
       
       li {
         list-style: none;
@@ -162,3 +181,15 @@ body {
     }
   }
 }
+
+#main-wrapper {
+  margin-top: 20px;
+}
+
+#footer {
+  margin-top: 30px;
+}
+  .copyright-footer {
+    font-size: 10px;
+    color: #fff;
+  }

@@ -72,53 +72,44 @@
  * @ingroup themeable
  */
 ?>
-<div id="page-wrapper">
+<div id="page-wrapper" class="container">
   <div class="inner row">
-    <?php if ($logo || $page['logo'] || $page['header'] || $page['nav']): ?>
+    <?php if ($logo || $page['header'] || $main_menu || $page['nav']): ?>
       <header id="header" class="page-header row clearfix">
-        <?php if ($logo || $page['logo'] || $page['header']): ?>
-          <div class="row clearfix header-logo-region">
-            <div class="row clearfix logo-row">
-              <?php if ($logo || $page['logo']): ?>
-                <div class="header-top">
-                  <div class="inner container">
-                    <?php if ($logo && !$page['logo']): ?>
-                      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
-                        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
-                      </a>
-                    <?php endif; ?>
-                    
-                    <?php if ($page['logo']): ?>
-                      <?php print render($page['logo']); ?>
-                    <?php endif; ?>
-                  </div> <!-- /.inner /.container -->
-                </div> <!-- /.header-top -->
-              <?php endif; ?>
-              
-              <?php if (!empty($header_text) || $page['header']): ?>
-                <div id="region-header-wrapper" class="header-secondary">
-                  <?php if (!empty($header_text)): ?>
-                    <?php if (empty($title)): ?>
-                      <h1 class="cb-header-text"><a href="<?php print $front_page; ?>" rel="home"><?php print $header_text; ?></a></h1>
-                    <?php else: ?>
-                      <h2 class="cb-header-text"><a href="<?php print $front_page; ?>" rel="home"><?php print $header_text; ?></a></h2>
-                    <?php endif; ?>
-                  <?php endif; ?>
-                  <?php print render($page['header']); ?>
-                </div> <!-- /#region-header-wrapper /.header-secondary -->
-              <?php endif; ?>
-            </div> <!-- /.row /.clearfix /.logo-row -->
-          </div> <!-- /.row /.clearfix /.header-logo-region -->
-        <?php endif; ?>
+        <div class="row clearfix header-logo-region">
+          <div class="row clearfix logo-row">
+            <?php if ($logo): ?>
+              <div class="left logo-slogan">
+                <?php if ($logo && !$page['logo']): ?>
+                  <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+                    <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                  </a>
+                <?php else: ?>
+                  <?php print render($page['logo']); ?>
+                <?php endif; ?>
+                
+                <?php if ($site_slogan): ?>
+                  <p id="site-slogan" class="slogan"><?php print $site_slogan; ?></p>
+                <?php endif; ?>
+              </div> <!-- /.left /.logo-slogan -->
+            <?php endif; ?>
+            
+            <?php if ($page['header']): ?>
+              <div id="region-header-wrapper" class="header-right right">
+                <?php print render($page['header']); ?>
+              </div> <!-- /#region-header-wrapper /.right -->
+            <?php endif; ?>
+          </div> <!-- /.row /.clearfix /.logo-row -->
+        </div> <!-- /.row /.clearfix -->
         
         <?php if ($page['nav']): ?>
           <div class="row clearfix nav-region">
-            <nav id="primary-navigation" class="nav clearfix row">
-              <?php if ($page['nav']): ?>
-                <?php print render($page['nav']); ?>
-              <?php endif; ?>
-            </nav>
-            <!-- /#primary-navigation /.nav /.clearfix /.row -->
+              <nav id="primary-navigation" class="nav clearfix row">
+                <?php if ($page['nav']): ?>
+                  <?php print render($page['nav']); ?>
+                <?php endif; ?>
+              </nav>
+              <!-- /#primary-navigation /.nav /.clearfix /.row -->
           </div> <!-- /.row /.clearfix /.nav-region -->
         <?php endif; ?>
       </header> <!-- /#header /.page-header /.row /.clearfix -->
@@ -200,23 +191,23 @@
         <?php endif; ?>
       </div> <!-- #main /.row /.clearfix -->
     </div> <!-- /#main-wrapper /.row /.clearfix -->
+    
+    <?php if ($page['footer'] || !empty($site_footer)): ?>
+      <footer id="footer" class="clearfix row">
+        <div class="row clearfix">
+          <?php if ($page['footer']): ?>
+            <div class="column right footer-column">
+              <?php print render($page['footer']); ?>
+            </div> <!-- /.column /.right /.footer-column -->
+          <?php endif; ?>
+          
+          <?php if (!empty($site_footer)): ?>
+            <div class="column left footer-column copyright-footer">
+              &copy; <?php print date('Y'); ?> <?php print $site_footer; ?>
+            </div> <!-- /.column /.left /.footer-column /.copyright-footer -->
+          <?php endif; ?>
+        </div> <!-- /.row /.clearfix -->
+      </footer> <!-- /#footer /.row /.clearfix -->
+    <?php endif; ?>
   </div> <!-- /.inner /.row -->
-</div> <!-- /#page-wrapper -->
-
-<?php if ($page['footer'] || !empty($site_footer)): ?>
-  <footer id="footer" class="clearfix container">
-    <div class="row clearfix">
-      <?php if ($page['footer']): ?>
-        <div class="column right footer-column">
-          <?php print render($page['footer']); ?>
-        </div> <!-- /.column /.right /.footer-column -->
-      <?php endif; ?>
-      
-      <?php if (!empty($site_footer)): ?>
-        <div class="column left footer-column copyright-footer">
-          &copy; <?php print date('Y'); ?> <?php print $site_footer; ?>
-        </div> <!-- /.column /.left /.footer-column /.copyright-footer -->
-      <?php endif; ?>
-    </div> <!-- /.row /.clearfix -->
-  </footer> <!-- /#footer /.row /.clearfix -->
-<?php endif; ?>
+</div> <!-- /#page-wrapper /.container -->

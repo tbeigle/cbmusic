@@ -2,6 +2,13 @@
 $colBodyBG: #fff;
 // $colSky: #b6c7d8
 $colSky: #d3dce5;
+$colDenim: #0d1520;
+$colPreEPBuilding: #213744;
+$colEPJacket: #3f401d;
+$colPreEPJacket: #2d4e5f;
+
+// Font families
+$fntSansSpecial: vincentregular, Arial, Helvetica, sans-serif;
 
 // Mixins
 @mixin vendorize($property, $value) {
@@ -31,6 +38,18 @@ $colSky: #d3dce5;
   display: block;
   font-size: 0;
   text-align: start;
+}
+
+@mixin linkAllStates($property, $value) {
+  &:link, &:visited, &:hover, &:active, &:focus {
+    #{$property}: $value;
+  }
+}
+
+@mixin linkVisited($property, $value) {
+  &:link, &:visited {
+    #{$property}: $value;
+  }
 }
 
 @mixin hoverActiveFocus($property, $value) {

@@ -18,13 +18,32 @@
   box-sizing: border-box; }
 
 h1,
+.cb-header-text,
 .ep-title {
   font-family: vincentregular, Arial, Helvetica, sans-serif; }
 
+.header-secondary {
+  position: relative;
+  z-index: 1; }
+
+.cb-header-text {
+  margin: 0;
+  line-height: 1.1; }
+
 a {
-  text-decoration: none; }
-  a:hover, a:active, a:focus {
+  -webkit-transition: all 0.25s ease;
+  -moz-transition: all 0.25s ease;
+  -ms-transition: all 0.25s ease;
+  -o-transition: all 0.25s ease;
+  transition: all 0.25s ease; }
+  a:link, a:visited, a:hover, a:active, a:focus {
     text-decoration: none; }
+  a:link, a:visited, a:hover, a:active, a:focus {
+    outline: none; }
+  a:link, a:visited {
+    color: #2d4e5f; }
+  a:hover, a:active, a:focus {
+    color: #0d1520; }
 
 body {
   width: 100%;
@@ -40,6 +59,12 @@ body {
   width: 100%;
   max-width: 1020px;
   margin: auto; }
+
+ul.tweets {
+  padding: 0;
+  margin: 0; }
+  ul.tweets li {
+    list-style: none; }
 
 .error-banner {
   width: 100%; }
@@ -82,22 +107,15 @@ body {
   -ms-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4); }
-  .header-top a,
-  .nav-region a {
-    -webkit-transition: all 0.25s ease;
-    -moz-transition: all 0.25s ease;
-    -ms-transition: all 0.25s ease;
-    -o-transition: all 0.25s ease;
-    transition: all 0.25s ease; }
-    .header-top a:link, .header-top a:visited,
-    .nav-region a:link,
-    .nav-region a:visited {
-      color: #fff; }
-    .header-top a:hover, .header-top a:active, .header-top a:focus,
-    .nav-region a:hover,
-    .nav-region a:active,
-    .nav-region a:focus {
-      color: #d3dce5; }
+  .header-top a:link, .header-top a:visited,
+  .nav-region a:link,
+  .nav-region a:visited {
+    color: #fff; }
+  .header-top a:hover, .header-top a:active, .header-top a:focus,
+  .nav-region a:hover,
+  .nav-region a:active,
+  .nav-region a:focus {
+    color: #d3dce5; }
   .header-top > .inner, .header-top > .nav,
   .nav-region > .inner,
   .nav-region > .nav {
@@ -129,3 +147,13 @@ body {
     .nav-region .nav .content ul li a {
       display: block;
       padding: 5px; }
+
+#main-wrapper {
+  margin-top: 20px; }
+
+#footer {
+  margin-top: 30px; }
+
+.copyright-footer {
+  font-size: 10px;
+  color: #fff; }
