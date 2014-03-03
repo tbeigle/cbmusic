@@ -135,7 +135,8 @@ ul.tweets {
 .nav-region .nav .content ul {
   padding: 0;
   margin: 0;
-  font: 24px/1.1 vincentregular, Arial, Helvetica, sans-serif; }
+  font: 24px/1.1 vincentregular, Arial, Helvetica, sans-serif;
+  overflow: hidden; }
   .nav-region .nav .content ul li {
     list-style: none;
     float: left;

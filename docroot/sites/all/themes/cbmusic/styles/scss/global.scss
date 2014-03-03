@@ -161,6 +161,7 @@ ul.tweets {
       padding: 0;
       margin: 0;
       font: 24px/1.1 $fntSansSpecial;
+      overflow: hidden;
       
       li {
         list-style: none;
