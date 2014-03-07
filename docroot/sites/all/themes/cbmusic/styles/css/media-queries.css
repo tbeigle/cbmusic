@@ -24,7 +24,21 @@
     width: 100%; }
   .cb-homepage .burr-flipped-sidebar {
     float: none;
-    width: 100%; } }
+    width: 100%; }
+
+  .pane-songkick .concert-header {
+    font-size: 10px;
+    word-wrap: break-word; }
+    .pane-songkick .concert-header .date-time {
+      width: 40%; }
+    .pane-songkick .concert-header .event-venue {
+      width: 60%; }
+    .pane-songkick .concert-header .event-city {
+      float: left;
+      clear: both;
+      width: 100%;
+      padding-top: 5px;
+      padding-left: 0; } }
 @media screen and (max-width: 460px) {
   .block.social-links .menu {
     text-align: center;

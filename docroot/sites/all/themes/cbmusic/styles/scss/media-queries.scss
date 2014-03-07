@@ -45,6 +45,29 @@
       width: 100%;
     }
   }
+  
+  .pane-songkick .concert-header {
+    font-size: 10px;
+    word-wrap: break-word;
+    
+    .date-time {
+      width: 40%;
+    }
+    
+    .event-venue {
+      width: 60%;
+    }
+    
+    .event-city {
+      float: left;
+      clear: both;
+      width: 100%;
+      padding: {
+        top: 5px;
+        left: 0;
+      }
+    }
+  }
 }
 
 @media screen and (max-width: 460px) {
