@@ -27,7 +27,8 @@
     width: 100%; } }
 @media screen and (max-width: 460px) {
   .block.social-links .menu {
-    text-align: center; }
+    text-align: center;
+    padding-bottom: 5px; }
 
   .cb-homepage.header-text-left .cb-header-text {
     font-size: 42px; }
@@ -37,11 +38,18 @@
 
   .cb-homepage .cb-contact-form .form-submit {
     display: block;
+    width: 100%; }
+
+  .cb-contact-form .webform-container-inline label,
+  .cb-contact-form .webform-container-inline input[type="text"],
+  .cb-contact-form .webform-container-inline input[type="email"] {
+    display: block;
+    float: none;
     width: 100%; } }
 @media screen and (max-width: 400px) {
   .block.social-links .menu li {
     width: 22%;
-    margin-left: 0; }
+    margin-left: 2%; }
     .block.social-links .menu li .social-link.facebook, .block.social-links .menu li .social-link.instagram, .block.social-links .menu li .social-link.songkick, .block.social-links .menu li .social-link.twitter {
       width: 100%;
       background-size: contain; }

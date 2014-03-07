@@ -50,6 +50,7 @@
 @media screen and (max-width: 460px) {
   .block.social-links .menu {
     text-align: center;
+    padding-bottom: 5px;
   }
   
   .cb-homepage.header-text-left .cb-header-text {
@@ -66,12 +67,22 @@
       width: 100%;
     }
   }
+  
+  .cb-contact-form .webform-container-inline {
+    label,
+    input[type="text"],
+    input[type="email"] {
+      display: block;
+      float: none;
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width: 400px) {
   .block.social-links .menu li {
     width: 22%;
-    margin-left: 0;
+    margin-left: 2%;
     
     .social-link {
       &.facebook,

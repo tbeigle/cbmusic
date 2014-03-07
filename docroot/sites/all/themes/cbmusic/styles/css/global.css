@@ -106,7 +106,9 @@ ul.tweets {
   -moz-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   -ms-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
-  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4); }
+  box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
+  font-size: 0;
+  line-height: 0; }
   .header-top a:link, .header-top a:visited,
   .nav-region a:link,
   .nav-region a:visited {
@@ -120,7 +122,7 @@ ul.tweets {
   .nav-region > .inner,
   .nav-region > .nav {
     padding-top: 5px;
-    padding-bottom: 3px;
+    padding-bottom: 5px;
     border-top: 1px solid #fff;
     border-bottom: 1px solid #fff; }
 
@@ -157,7 +159,8 @@ ul.tweets {
   .block.social-links .menu li {
     list-style: none;
     display: inline-block;
-    margin-left: 2%;
+    padding: 5px 0;
+    margin: 0 0 0 2%;
     text-align: left;
     overflow: hidden; }
     .block.social-links .menu li:first-child {
