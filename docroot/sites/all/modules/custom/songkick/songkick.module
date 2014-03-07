@@ -1,0 +1,693 @@
+<?php
+/**
+ * @file
+ * Module file for the SongKick artist information importer
+ */
+
+/**
+ * Implements hook_menu()
+ */
+function songkick_menu() {
+  $items = array();
+  
+  $items['admin/config/services/songkick'] = array(
+    'title' => 'songkick Settings',
+    'description' => 'songkick API and configuration settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('songkick_admin_settings'),
+    'access arguments' => array('administer songkick'),
+    'type' => MENU_NORMAL_ITEM,
+    'file' => 'includes/songkick.admin.inc',
+  );
+  
+  $items['admin/config/services/songkick/settings'] = array(
+    'title' => 'songkick Settings',
+    'description' => 'songkick API and configuration settings',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('songkick_admin_settings'),
+    'access arguments' => array('administer songkick'),
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+    'file' => 'includes/songkick.admin.inc',
+  );
+  
+  $items['admin/config/services/songkick/artists'] = array(
+    'title' => 'songkick Artists',
+    'description' => 'songkick artist importing.',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('songkick_admin_artists'),
+    'access arguments' => array('import songkick artists'),
+    'type' => MENU_LOCAL_TASK,
+    'file' => 'includes/songkick.admin.inc',
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_permission()
+ */
+function songkick_permission() {
+  return array(
+    'administer songkick' => array(
+      'title' => t('Administer songkick'),
+      'restrict access' => TRUE,
+    ),
+    'import songkick artists' => array(
+      'title' => t('Import songkick artists'),
+    ),
+    'delete songkick artists' => array(
+      'title' => t('Delete songkick artists'),
+    ),
+  );
+}
+
+/**
+ * Implements hook_block_info().
+ */
+function songkick_block_info() {
+  $artists = songkick_artist_info(NULL, NULL, TRUE);
+  
+  $items = array();
+  foreach ($artists as $artist_id => $artist) {
+    $items['artist_calendar_' . $artist->artist_id] = array(
+      'info' => t('songkick: Upcoming Events for !display_name', array('!display_name' => $artist->display_name)),
+    );
+  }
+  
+  return $items;
+}
+
+/**
+ * Loader function for artist events
+ */
+function songkick_artist_calendar_load($artist_id) {
+  $output = array('artist' => NULL, 'events' => array());
+  
+  $artists = songkick_artist_info();
+  
+  if (empty($artists[$artist_id])) return $output;
+  $artist = $artists[$artist_id];
+  
+  if (!empty($artists[$artist_id])) {
+    $output['artist'] = (object) array(
+      'name' => $artist->display_name,
+      'uri' => $artist->uri,
+    );
+  }
+  
+  $query = db_select('songkick_performances', 'p');
+  $query->fields('p', array('event_id'));
+  $query->condition('p.artist_id', $artist_id, '=');
+  $result = $query->execute();
+  
+  $event_ids = array();
+  foreach ($result as $row) {
+    if (!in_array($row->event_id, $event_ids)) $event_ids[] = $row->event_id;
+  }
+  
+  if (!empty($event_ids)) {
+    $time = time();
+    
+    $query = db_select('songkick_performances', 'p');
+    $query->leftJoin('songkick_events', 'e', 'p.event_id = e.event_id');
+    $query->leftJoin('songkick_venues', 'v', 'e.venue_id = v.venue_id');
+    $query->leftJoin('songkick_metro_areas', 'm', 'v.metro_area_id = m.metro_area_id');
+    
+    $query->addField('e', 'event_id', 'eid');
+    $query->addField('e', 'uri', 'event_uri');
+    $query->addField('e', 'display_name', 'event_name');
+    $query->addField('e', 'time');
+    $query->addField('e', 'city');
+    $query->addField('m', 'uri', 'city_uri');
+    $query->addField('p', 'artist_id', 'artist_id');
+    $query->addField('v', 'display_name', 'venue_name');
+    $query->addField('v', 'uri', 'venue_uri');
+    
+    $query->condition('p.event_id', $event_ids, 'IN');
+    $query->condition('e.time', $time, '>=');
+    
+    $query->orderBy('e.time', 'ASC');
+    
+    $result = $query->execute();
+    
+    foreach ($result as $row) {
+      if (empty($output['events'][$row->eid])) {
+        $output['events'][$row->eid] = (object) array(
+          'name' => $row->event_name,
+          'uri' => $row->event_uri,
+          'time' => $row->time,
+          'location' => array(
+            'venue' => array(
+              'name' => $row->venue_name,
+              'uri' => $row->venue_uri,
+            ),
+            'city' => array(
+              'name' => $row->city,
+              'uri' => $row->city_uri,
+            ),
+          ),
+          'artists' => array(
+            $artist->artist_id => (object) array(
+              'name' => $artist->display_name,
+              'uri' => $artist->uri,
+            ),
+          ),
+        );
+      }
+      
+      if (empty($output['events'][$row->eid]->artists[$row->artist_id]) && !empty($artists[$row->artist_id])) {
+        $output['events'][$row->eid]->artists[$row->artist_id] = (object) array(
+          'name' => $artists[$row->artist_id]->display_name,
+          'uri' => $artists[$row->artist_id]->uri,
+        );
+      }
+    }
+  }
+  
+  return $output;
+}
+
+/**
+ * Implements hook_block_view().
+ */
+function songkick_block_view($delta = '') {
+  $block = array();
+  $images_path = drupal_get_path('module', 'songkick') . '/images/';
+  
+  if (!empty($delta) && strstr($delta, 'artist_calendar_') !== FALSE) {
+    $link_attributes = array(
+      'attributes' => array(
+        'target' => '_blank',
+      ),
+    );
+    
+    $artist_id = str_replace('artist_calendar_', '', $delta);
+    $calendar = songkick_artist_calendar_load($artist_id);
+    
+    if (!empty($calendar['events'])) {
+      $block['content'] = '';
+      
+      $event_1 = reset($calendar['events']);
+      if (!empty($event_1->artists[$artist_id]->uri)) {
+        $block['content'] =
+          '<a class="concerts-by-songkick" href="' . $event_1->artists[$artist_id]->uri . '" target="_blank">' .
+            '<img alt="' . t('Concerts by songkick') . '" src="' . $images_path . 'concerts-by-songkick-163x43.png">' . 
+          '</a>';
+      }
+      
+      $block['subject'] = '';
+      $block['content'] .= '<ul class="tour-dates">';
+      
+      foreach ($calendar['events'] as $event) {
+        $block['content'] .=
+          '<li>' .
+            '<a class="concert-header" href="' . $event->uri . '" target="_blank">' .
+              '<span class="date-time">' . date('M j, Y, g:i a', $event->time) . '</span> ' .
+              '<span class="event-venue">' . $event->location['venue']['name'] . '</span> ' .
+              '<span class="event-city">' . $event->location['city']['name'] . '</span>' .
+            '</a>' .
+          '</li>';
+      }
+      
+      $block['content'] .= '</ul> <!-- /.tour-dates -->';
+    }
+  }
+  
+  return $block;
+}
+
+/**
+ * Implements hook_cron().
+ */
+function songkick_cron() {
+  songkick_import_artist_calendars();
+}
+
+/**
+ * Retrieves stored artist information
+ */
+function songkick_artist_info($artist_ids = array(), $mbids = array(), $enabled_only = FALSE) {
+  $query = db_select('songkick_artists', 'a');
+  $query->fields('a');
+  $query->orderBy('a.display_name', 'ASC');
+  
+  if (!empty($artist_ids)) {
+    $query->condition('a.artist_id', $artist_ids, 'IN');
+  }
+  
+  if (!empty($mbids)) {
+    $query->condition('a.mbid', $mbids, 'IN');
+  }
+  
+  if ($enabled_only) {
+    $query->condition('a.import', 1, '=');
+  }
+  
+  $result = $query->execute();
+  
+  $artists = array();
+  foreach ($result as $row) {
+    $artists[$row->artist_id] = $row;
+  }
+  
+  return $artists;
+}
+
+/**
+ * Import artist events
+ */
+function songkick_import_artist_calendars($artist_ids = array()) {
+  $loaded = module_load_include('inc', 'songkick', 'includes/songkick.api');
+  $songkick = new songkickInterface();
+  $fields_to_props = _songkick_table_fields_to_api_props();
+  
+  $tables = array(
+    'artists',
+    'events',
+    'metro_areas',
+    'performances',
+    'venues',
+  );
+  
+  $updates = array();
+  foreach ($tables as $table_suffix) {
+    $table = 'songkick_' . $table_suffix;
+    
+    $updates[$table] = array(
+      'fields' => array(),
+      'inserts' => array(),
+      'updates' => array(),
+    );
+    
+    if (empty($fields_to_props[$table])) continue;
+    
+    $fields = array_keys($fields_to_props[$table]);
+    
+    foreach ($fields as $field) {
+      $updates[$table]['fields'][] = $field;
+    }
+  }
+  
+  $all_ids = songkick_get_saved_ids('all');
+  if (empty($artist_ids)) $artist_ids = songkick_get_saved_ids('artists', TRUE);
+  
+  foreach ($artist_ids as $artist_id) {
+    $result = $songkick->import_artist_calendar($artist_id);
+    
+    if (empty($result)) continue;
+    
+    foreach ($result as $event) {
+      $event = (object) $event;
+      $venue = (object) $event->venue;
+      $metro_area = (object) $venue->metroArea;
+      $start = (object) $event->start;
+      
+      $time_string = $start->date . ' ' . $start->time;
+      $time = strtotime($time_string);
+      
+      $record_set = (object) array(
+        'events' => isset($all_ids['events'][$event->id]) ? 'updates' : 'inserts',
+        'venues' => isset($all_ids['venues'][$venue->id]) ? 'updates' : 'inserts',
+        'metro_areas' => isset($all_ids['metro_areas'][$metro_area->id]) ? 'updates' : 'inserts',
+      );
+      
+      $updates['songkick_events'][$record_set->events][$event->id] = array(
+        'venue_id' => $venue->id,
+        'time' => $time,
+        'lat' => !empty($event->location['lat']) ? $event->location['lat'] : '',
+        'lng' => !empty($event->location['lng']) ? $event->location['lng'] : '',
+        'city' => !empty($event->location['city']) ? $event->location['city'] : '',
+      );
+      
+      foreach ($fields_to_props['songkick_events'] as $field => $prop) {
+        if (empty($prop)) continue;
+        $updates['songkick_events'][$record_set->events][$event->id][$field] = !empty($event->{$prop}) ? $event->{$prop} : '';
+      }
+      
+      $updates['songkick_metro_areas'][$record_set->metro_areas][$metro_area->id] = array(
+        'metro_area_id' => $metro_area->id,
+        'display_name' => $metro_area->displayName,
+        'uri' => $metro_area->uri,
+        'country' => $metro_area->country['displayName'],
+        'state' => $metro_area->state['displayName'],
+      );
+      
+      $updates['songkick_venues'][$record_set->venues][$venue->id] = array(
+        'venue_id' => $venue->id,
+        'metro_area_id' => $metro_area->id,
+        'display_name' => $venue->displayName,
+        'uri' => $venue->uri,
+        'lat' => !empty($venue->lat) ? $venue->lat : '',
+        'lng' => !empty($venue->lng) ? $venue->lng : '',
+      );
+      
+      foreach ($event->performance as $performance) {
+        $performance = (object) $performance;
+        $artist = (object) $performance->artist;
+        
+        $performance_set = isset($all_ids['performances'][$performance->id]) ? 'updates' : 'inserts';
+        $artist_set = in_array($artist->id, $all_ids['artists']) ? 'updates' : 'inserts';
+        
+        if (empty($updates['songkick_artists'][$artist_set][$artist->id])) {
+          $updates['songkick_artists'][$artist_set][$artist->id] = array(
+            'artist_id' => $artist->id,
+            'display_name' => $artist->displayName,
+            'uri' => $artist->uri,
+            'import' => 0,
+          );
+        }
+        
+        if ($artist_id == $artist->id && empty($updates['songkick_artists'][$artist_set][$artist->id]['import'])) {
+          $updates['songkick_artists'][$artist_set][$artist->id]['import'] = 1;
+        }
+        
+        if (empty($updates['songkick_performances'][$performance_set][$performance->id])) {
+          $updates['songkick_performances'][$performance_set][$performance->id] = array(
+            'performance_id' => $performance->id,
+            'artist_id' => $artist->id,
+            'event_id' => $event->id,
+            'display_name' => $performance->displayName,
+            'billing_index' => $performance->billingIndex,
+            'billing' => $performance->billing,
+          );
+        }
+      }
+    }
+  }
+  
+  foreach ($updates as $table => $data) {
+    // Insert new records
+    if (!empty($data['inserts'])) {
+      _songkick_bulk_insert($table, $data['fields'], $data['inserts']);
+    }
+    
+    if (empty($data['updates'])) continue;
+    
+    // Update existing records
+    foreach ($data['updates'] as $id => $values) {
+      switch ($table) {
+        case 'songkick_artists': {
+          $id_field = 'artist_id';
+          break;
+        }
+        case 'songkick_events': {
+          $id_field = 'event_id';
+          break;
+        }
+        case 'songkick_metro_areas': {
+          $id_field = 'metro_area_id';
+          break;
+        }
+        case 'songkick_performances': {
+          $id_field = 'performance_id';
+          break;
+        }
+        case 'songkick_venues': {
+          $id_field = 'venue_id';
+          break;
+        }
+      }
+      
+      if (empty($id_field)) continue;
+      $query = db_update($table);
+      $query->fields($values);
+      $query->condition($id_field, $id, '=');
+      $updated = $query->execute();
+    }
+  }
+  
+  // Delete expired data
+  //songkick_delete_old_data();
+}
+
+/**
+ * Helper function to return available fields and corresponding songkick property names
+ */
+function _songkick_table_fields_to_api_props() {
+  return array(
+    'songkick_artists' => array(
+      'artist_id' => 'id',
+      'display_name' => 'displayName',
+      'uri' => 'uri',
+      'import' => 0,
+    ),
+    'songkick_events' => array(
+      'event_id' => 'id',
+      'venue_id' => 0,
+      'uri' => 'uri',
+      'display_name' => 'displayName',
+      'time' => 0,
+      'type' => 'type',
+      'age_restriction' => 'ageRestriction',
+      'status' => 'status',
+      'popularity' => 'popularity',
+      'lat' => 0,
+      'lng' => 0,
+      'city' => 0,
+    ),
+    'songkick_metro_areas' => array(
+      'metro_area_id' => 'id',
+      'display_name' => 'displayName',
+      'uri' => 'uri',
+      'country' => 0,
+      'state' => 0,
+    ),
+    'songkick_performances' => array(
+      'performance_id' => 'id',
+      'artist_id' => 0,
+      'event_id' => 0,
+      'display_name' => 'displayName',
+      'billing_index' => 'billingIndex',
+      'billing' => 'billing',
+    ),
+    'songkick_venues' => array(
+      'venue_id' => 'id',
+      'metro_area_id' => 0,
+      'display_name' => 'displayName',
+      'uri' => 'uri',
+      'lat' => 'lat',
+      'lng' => 'lng',
+    ),
+  );
+}
+
+/**
+ * Bulk inserts
+ */
+function _songkick_bulk_insert($table, $fields, $records) {
+  watchdog('songkick', 'bulk insert check:<pre>' . print_r($records, TRUE) . '</pre>');
+  $query = db_insert($table)->fields($fields);
+  foreach ($records as $record) {
+    $query->values($record);
+  }
+  
+  $query->execute();
+}
+
+/**
+ * Deletes data to be updated
+ */
+function songkick_delete_old_data($artist_ids = array()) {
+  _songkick_delete_artist_data($artist_ids);
+  _songkick_delete_expired_events();
+  _songkick_delete_orphaned_venues();
+  _songkick_delete_orphaned_metro_areas();
+}
+
+/**
+ * Delets songkick artist data from the database
+ */
+function _songkick_delete_artist_data($artist_ids = array()) {
+  if (empty($artist_ids)) {
+    return;
+    /*$query = db_delete('songkick_artists')
+      ->condition('artist_id', 0, '<>')
+      ->execute();
+    
+    $query = db_delete('songkick_performances')
+      ->condition('performance_id', 0, '<>')
+      ->execute();*/
+  }
+  else {
+    $query = db_delete('songkick_artists')
+      ->condition('artist_id', $artist_ids, 'IN')
+      ->execute();
+    
+    $query = db_delete('songkick_performances')
+      ->condition('artist_id', $artist_ids, 'IN')
+      ->execute();
+  }
+}
+
+/**
+ * Deletes all orphaned and outdated events and related content
+ */
+function _songkick_delete_expired_events() {
+  $time = time();
+  
+  $query = db_select('songkick_events', 'e');
+  $query->innerJoin('songkick_performances', 'p', 'e.event_id = p.event_id');
+  $query->fields('e', array('event_id'));
+  $query->condition('time', $time, '>=');
+  $query->orderBy('time', 'DESC');
+  $result = $query->execute();
+  
+  $ids_to_keep = array();
+  foreach ($result as $row) {
+    if (!in_array($row->event_id, $ids_to_keep)) $ids_to_keep[] = $row->event_id;
+  }
+  
+  if (!empty($ids_to_keep)) {
+    $query = db_delete('songkick_events')
+      ->condition('event_id', $ids_to_keep, 'NOT IN')
+      ->execute();
+    
+    $query = db_delete('songkick_performances')
+      ->condition('event_id', $ids_to_keep, 'NOT IN')
+      ->execute();
+  }
+  else {
+    $query = db_delete('songkick_events')
+      ->condition('event_id', 0, '<>')
+      ->execute();
+    
+    $query = db_delete('songkick_performances')
+      ->condition('event_id', 0, '<>')
+      ->execute();
+  }
+}
+
+/**
+ * Deletes orphaned venues
+ */
+function _songkick_delete_orphaned_venues() {
+  $query = db_select('songkick_events', 'e');
+  $query->fields('e', array('venue_id'));
+  $result = $query->execute();
+  
+  $ids_to_keep = array();
+  foreach ($result as $row) {
+    if (!in_array($row->venue_id, $ids_to_keep)) $ids_to_keep[] = $row->venue_id;
+  }
+  
+  if (!empty($ids_to_keep)) {
+    $query = db_delete('songkick_venues')
+      ->condition('venue_id', $ids_to_keep, 'NOT IN')
+      ->execute();
+  }
+  else {
+    $query = db_delete('songkick_venues')
+      ->condition('venue_id', 0, '<>')
+      ->execute();
+  }
+}
+
+/**
+ * Deletes orphaned metro areas
+ */
+function _songkick_delete_orphaned_metro_areas() {
+  $query = db_select('songkick_venues', 'v');
+  $query->fields('v', array('metro_area_id'));
+  $result = $query->execute();
+  
+  $ids_to_keep = array();
+  foreach ($result as $row) {
+    if (!in_array($row->metro_area_id, $ids_to_keep)) $ids_to_keep[] = $row->metro_area_id;
+  }
+  
+  if (!empty($ids_to_keep)) {
+    $query = db_delete('songkick_metro_areas')
+      ->condition('metro_area_id', $ids_to_keep, 'NOT IN')
+      ->execute();
+  }
+  else {
+    $query = db_delete('songkick_metro_areas')
+      ->condition('metro_area_id', 0, '<>')
+      ->execute();
+  }
+}
+
+/**
+ * Checks whether an artist's content should be imported
+ */
+function songkick_import_artist_check($artist_id = 0) {
+  global $_songkick_import_artist_ids;
+  
+  if (empty($_songkick_import_artist_ids)) {
+    $_songkick_import_artist_ids = array();
+    
+    $query = db_select('songkick_artists', 'a');
+    $query->fields('a', array('artist_id'));
+    $query->condition('a.import', 1, '=');
+    $result = $query->execute();
+    
+    foreach ($result as $row) {
+      $_songkick_import_artist_ids[] = $row->artist_id;
+    }
+  }
+  
+  if (!empty($artist_id)) {
+    return in_array($artist_id, $_songkick_import_artist_ids);
+  }
+  else {
+    return $_songkick_import_artist_ids;
+  }
+}
+
+/**
+ * Loads artist info
+
+/**
+ * Fetches songkick ids from the database by type.
+ */
+function songkick_get_saved_ids($type = 'all', $only_enabled = FALSE) {
+  $output = array();
+  
+  $keys_all = array(
+    'artists' => 'artist_id',
+    'events' => 'event_id',
+    'metro_areas' => 'metro_area_id',
+    'performances' => 'performance_id',
+    'venues' => 'venue_id',
+  );
+  
+  if ($type == 'all') {
+    foreach ($keys_all as $table_suffix => $id_field) {
+      $output[$table_suffix] = array();
+      
+      if ($table_suffix == 'artists' && $only_enabled) {
+        $output[$table_suffix] = songkick_import_artist_check();
+      }
+      else {
+        $query = db_select('songkick_' . $table_suffix, 't');
+        $query->fields('t', array($id_field));
+        $result = $query->execute();
+        
+        foreach ($result as $row) {
+          $id = $row->{$id_field};
+          $output[$table_suffix][$id] = $id;
+        }
+      }
+    }
+  }
+  else {
+    if (empty($keys_all[$type])) return $output;
+    $id_field = $keys_all[$type];
+    
+    if ($type == 'artists' && $only_enabled) {
+      $output = songkick_import_artist_check();
+    }
+    else {
+      $query = db_select('songkick_' . $type, 't');
+      $query->fields('t', array($id_field));
+      $result = $query->execute();
+      
+      foreach ($result as $row) {
+        $id = $row->{$id_field};
+        $output[$id] = $id;
+      }
+    }
+  }
+  
+  return $output;
+}

@@ -1,0 +1,183 @@
+.block.banner-home {
+  position: relative;
+  z-index: 1; }
+  .block.banner-home p {
+    margin: 0; }
+  .block.banner-home.pre-ep .block-title {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    z-index: 2;
+    margin: 0;
+    font: 42px/1.1 vincentregular, Arial, Helvetica, sans-serif;
+    color: #fff; }
+  .block.banner-home.pre-ep .content {
+    position: relative;
+    z-index: 1;
+    font-size: 0;
+    line-height: 0; }
+    .block.banner-home.pre-ep .content img {
+      display: block; }
+  .block.banner-home.new-ep-link {
+    position: relative;
+    width: 100%;
+    max-width: 1020px;
+    max-height: 540px;
+    overflow: hidden; }
+    .block.banner-home.new-ep-link .ep-title {
+      position: absolute;
+      z-index: 2;
+      left: 2.94%;
+      top: 110px;
+      width: 31.372%;
+      font-size: 42px;
+      line-height: 1.1; }
+      .block.banner-home.new-ep-link .ep-title span {
+        display: block; }
+    .block.banner-home.new-ep-link .album-cover {
+      position: relative;
+      z-index: 1;
+      display: block; }
+    .block.banner-home.new-ep-link a:link, .block.banner-home.new-ep-link a:visited, .block.banner-home.new-ep-link a:hover, .block.banner-home.new-ep-link a:active, .block.banner-home.new-ep-link a:focus {
+      color: #fff; }
+      .block.banner-home.new-ep-link a:link .itunes, .block.banner-home.new-ep-link a:visited .itunes, .block.banner-home.new-ep-link a:hover .itunes, .block.banner-home.new-ep-link a:active .itunes, .block.banner-home.new-ep-link a:focus .itunes {
+        -webkit-transition: all 0.25s ease;
+        -moz-transition: all 0.25s ease;
+        -ms-transition: all 0.25s ease;
+        -o-transition: all 0.25s ease;
+        transition: all 0.25s ease; }
+    .block.banner-home.new-ep-link:hover .ep-title a:link .itunes, .block.banner-home.new-ep-link:hover .ep-title a:visited .itunes, .block.banner-home.new-ep-link:hover .ep-title a:hover .itunes, .block.banner-home.new-ep-link:hover .ep-title a:active .itunes, .block.banner-home.new-ep-link:hover .ep-title a:focus .itunes {
+      color: #4d4227; }
+
+.cb-homepage #page-wrapper {
+  position: relative;
+  margin: auto; }
+  .cb-homepage #page-wrapper > .inner {
+    background: #fff; }
+  .cb-homepage #page-wrapper header {
+    padding: 0; }
+.cb-homepage .cb-header-text {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+  top: 20%;
+  z-index: 5;
+  font-size: 96px;
+  color: #fff; }
+  .cb-homepage .cb-header-text a:link, .cb-homepage .cb-header-text a:visited {
+    color: #fff; }
+  .cb-homepage .cb-header-text a:hover, .cb-homepage .cb-header-text a:active, .cb-homepage .cb-header-text a:focus {
+    color: #d3dce5; }
+.cb-homepage.header-text-left .cb-header-text {
+  right: auto;
+  left: 30px;
+  color: #0d1520; }
+  .cb-homepage.header-text-left .cb-header-text a:link, .cb-homepage.header-text-left .cb-header-text a:visited {
+    color: #0d1520; }
+  .cb-homepage.header-text-left .cb-header-text a:hover, .cb-homepage.header-text-left .cb-header-text a:active, .cb-homepage.header-text-left .cb-header-text a:focus {
+    color: #213744; }
+
+.home-twitter-feed {
+  /*.view-content {
+    height: 360px;
+    overflow: scroll;
+  }*/
+  font-size: 12px; }
+  .home-twitter-feed .tweet {
+    overflow: hidden;
+    padding: 10px 3px 5px;
+    border-bottom: 1px solid #d3dce5; }
+  .home-twitter-feed .tweet-img {
+    float: left;
+    width: 15.335%; }
+  .home-twitter-feed .tweet-message {
+    float: right;
+    width: 84.665%;
+    padding-left: 10px; }
+  .home-twitter-feed .tweet-time-ago {
+    clear: both;
+    text-align: right;
+    font-size: 10px; }
+
+.twitter-feed-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3dce5;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.25;
+  text-align: center; }
+  .twitter-feed-title a {
+    display: inline-block;
+    height: auto;
+    min-height: 20px;
+    padding-left: 28px;
+    background: url("../../images/logo-twitter-24x20.png") 0 0 no-repeat; }
+
+.pane-songkick {
+  margin-bottom: 20px; }
+  .pane-songkick .concerts-by-songkick {
+    display: block;
+    width: 100%;
+    text-align: center; }
+  .pane-songkick .tour-dates {
+    padding: 0;
+    margin: 0; }
+    .pane-songkick .tour-dates li {
+      list-style: none;
+      margin-top: 10px; }
+      .pane-songkick .tour-dates li:first-child .concert-header {
+        border-top: 1px solid #d3dce5; }
+  .pane-songkick .concert-header {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #d3dce5;
+    background: url("../../images/cb-header-textured-bg.jpg") 0 0 repeat;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase; }
+    .pane-songkick .concert-header:link, .pane-songkick .concert-header:visited, .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      color: white; }
+    .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      background: #d3dce5; }
+    .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      color: #0d1520; }
+    .pane-songkick .concert-header span {
+      float: left; }
+    .pane-songkick .concert-header .date-time,
+    .pane-songkick .concert-header .event-city {
+      width: 30%; }
+    .pane-songkick .concert-header .date-time {
+      padding-right: 3%; }
+    .pane-songkick .concert-header .event-venue {
+      width: 40%; }
+    .pane-songkick .concert-header .event-city {
+      float: right;
+      padding-left: 3%; }
+
+.home-instagram-feed {
+  margin-bottom: 20px; }
+  .home-instagram-feed .instagrams {
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+  .home-instagram-feed .instagram-row {
+    list-style: none;
+    float: left;
+    width: 33.333%;
+    max-width: 150px;
+    padding: 5px; }
+
+.instagram-title {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d3dce5;
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.3;
+  text-align: center; }
+  .instagram-title a {
+    display: inline-block;
+    height: 24px;
+    padding-left: 32px;
+    background: url("../../images/logo-instagram-24x24.png") 0 0 no-repeat; }

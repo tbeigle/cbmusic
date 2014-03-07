@@ -72,78 +72,151 @@
  * @ingroup themeable
  */
 ?>
-
-  <div id="page-wrapper"><div id="page">
-
-    <div id="header"><div class="section clearfix">
-<!--
-      <?php //if ($logo): ?>
-        <a href="<?php //print $front_page; ?>" title="<?php //print t('Home'); ?>" rel="home" id="logo">
-          <img src="<?php //print $logo; ?>" alt="<?php //print t('Home'); ?>" />
-        </a>
-      <?php //endif; ?>
--->
-      <?php if ($site_name || $site_slogan): ?>
-        <div id="name-and-slogan">
-          <?php if ($site_name): ?>
-            <?php if ($title): ?>
-              <div id="site-name"><strong>
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </strong></div>
-            <?php else: /* Use h1 when the content title is empty */ ?>
-              <h1 id="site-name">
-                <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home"><span><?php print $site_name; ?></span></a>
-              </h1>
-            <?php endif; ?>
+<div id="page-wrapper">
+  <div class="inner row">
+    <?php if ($logo || $page['logo'] || $page['header'] || $page['nav']): ?>
+      <header id="header" class="page-header row clearfix">
+        <?php if ($logo || $page['logo'] || $page['header']): ?>
+          <div class="row clearfix header-logo-region">
+            <div class="row clearfix logo-row">
+              <?php if ($logo || $page['logo']): ?>
+                <div class="header-top">
+                  <div class="inner container">
+                    <?php if ($logo && !$page['logo']): ?>
+                      <a href="<?php print $front_page; ?>" title="<?php print t('Home'); ?>" rel="home" id="logo">
+                        <img src="<?php print $logo; ?>" alt="<?php print t('Home'); ?>" />
+                      </a>
+                    <?php endif; ?>
+                    
+                    <?php if ($page['logo']): ?>
+                      <?php print render($page['logo']); ?>
+                    <?php endif; ?>
+                  </div> <!-- /.inner /.container -->
+                </div> <!-- /.header-top -->
+              <?php endif; ?>
+              
+              <?php if (!empty($header_text) || $page['header']): ?>
+                <div id="region-header-wrapper" class="header-secondary">
+                  <?php if (!empty($header_text)): ?>
+                    <?php if (empty($title)): ?>
+                      <h1 class="cb-header-text"><a href="<?php print $front_page; ?>" rel="home"><?php print $header_text; ?></a></h1>
+                    <?php else: ?>
+                      <h2 class="cb-header-text"><a href="<?php print $front_page; ?>" rel="home"><?php print $header_text; ?></a></h2>
+                    <?php endif; ?>
+                  <?php endif; ?>
+                  <?php print render($page['header']); ?>
+                </div> <!-- /#region-header-wrapper /.header-secondary -->
+              <?php endif; ?>
+            </div> <!-- /.row /.clearfix /.logo-row -->
+          </div> <!-- /.row /.clearfix /.header-logo-region -->
+        <?php endif; ?>
+        
+        <?php if ($page['nav']): ?>
+          <div class="row clearfix nav-region">
+            <nav id="primary-navigation" class="nav clearfix row">
+              <?php if ($page['nav']): ?>
+                <?php print render($page['nav']); ?>
+              <?php endif; ?>
+            </nav>
+            <!-- /#primary-navigation /.nav /.clearfix /.row -->
+          </div> <!-- /.row /.clearfix /.nav-region -->
+        <?php endif; ?>
+      </header> <!-- /#header /.page-header /.row /.clearfix -->
+    <?php endif; ?>
+    
+    <?php if ($breadcrumb && $show_breadcrumb): ?>
+      <div id="breadcrumb" class="row clearfix">
+        <div class="row clearfix">
+          <?php print $breadcrumb; ?>
+        </div> <!-- /.row /.clearfix -->
+      </div> <!-- /#breadcrumb /.row /.clearfix -->
+    <?php endif; ?>
+    
+    <?php if (!empty($messages)): ?>
+      <div id="cb-messages-wrapper" class="row clearfix">
+        <div class="row clearfix">
+          <?php print $messages; ?>
+        </div> <!-- /.row /.clearfix -->
+      </div> <!-- /#cb-messages-wrapper /.clearfix -->
+    <?php endif; ?>
+    
+    <div id="main-wrapper" class="row clearfix">
+      <?php if ($tabs || !empty($page['help'])): ?>
+        <div id="cb-tabs-and-help" class="row clearfix">
+          <?php if ($tabs): ?>
+            <div class="tabs"><?php print render($tabs); ?></div>
           <?php endif; ?>
-
-          <?php if ($site_slogan): ?>
-            <div id="site-slogan"><?php print $site_slogan; ?></div>
+          
+          <?php if (!empty($page['help'])): ?>
+            <?php print render($page['help']); ?>
           <?php endif; ?>
-        </div> <!-- /#name-and-slogan -->
+          
+          <?php if ($action_links): ?>
+            <ul class="action-links">
+              <?php print render($action_links); ?>
+            </ul>
+          <?php endif; ?>
+        </div> <!-- /#cb-tabs-and-help /.row /.clearfix -->
       <?php endif; ?>
+      
+      <div id="main" class="row clearfix">
+        <?php if ($page['sidebar_first']): ?>
+          <div id="cb-sidebar-first" class="column">
+            <?php print render($page['sidebar_first']); ?>
+          </div> <!-- /#cb-sidebar-first /.column -->
+        <?php endif; ?>
+        
+        <div id="content-wrapper" class="column">
+          <a id="main-content"></a>
+          
+          <?php if ($page['content_top'] || $title): ?>
+            <div id="cb-content-top" class="row clearfix">
+              <?php print render($title_prefix); ?>
+              <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
+              <?php print render($title_suffix); ?>
+              
+              <?php if ($page['content_top']): ?>
+                <?php print render($page['content_top']); ?>
+              <?php endif; ?>
+            </div> <!-- /#cb-content-top /.row /.clearfix -->
+          <?php endif; ?>
+          
+          <div id="content" class="row clearfix">
+            <?php print render($page['content']); ?>
+            <?php print $feed_icons; ?>
+          </div> <!-- /#content /.row /.clearfix -->
+          
+          <?php if ($page['content_bottom']): ?>
+            <div id="cb-conent-bottom" class="row clearfix">
+              <?php print render($page['content_bottom']); ?>
+            </div> <!-- /#cb-content-bottom /.row /.clearfix -->
+          <?php endif; ?>
+        </div> <!-- /#content-wrapper /.column -->
+        
+        <?php if ($page['sidebar_second']): ?>
+          <div id="cb-sidebar-second" class="column">
+            <?php print render($page['sidebar_second']); ?>
+          </div> <!-- /#cb-sidebar-second /.column -->
+        <?php endif; ?>
+      </div> <!-- #main /.row /.clearfix -->
+    </div> <!-- /#main-wrapper /.row /.clearfix -->
+  </div> <!-- /.inner /.row -->
+</div> <!-- /#page-wrapper -->
 
-      <?php print render($page['header']); ?>
-
-    </div></div> <!-- /.section, /#header -->
-
-    <?php //if ($breadcrumb): ?>
-      <!--<div id="breadcrumb"><?php //print $breadcrumb; ?></div>-->
-    <?php //endif; ?>
-
-    <?php print $messages; ?>
-
-    <div id="main-wrapper"><div id="main" class="clearfix">
-
-      <div id="content" class="column"><div class="section">
-        <?php if ($page['highlighted']): ?><div id="highlighted"><?php print render($page['highlighted']); ?></div><?php endif; ?>
-        <a id="main-content"></a>
-        <?php print render($title_prefix); ?>
-        <?php if ($title): ?><h1 class="title" id="page-title"><?php print $title; ?></h1><?php endif; ?>
-        <?php print render($title_suffix); ?>
-        <?php if ($tabs): ?><div class="tabs"><?php print render($tabs); ?></div><?php endif; ?>
-        <?php print render($page['help']); ?>
-        <?php if ($action_links): ?><ul class="action-links"><?php print render($action_links); ?></ul><?php endif; ?>
-        <?php print render($page['content']); ?>
-        <?php print $feed_icons; ?>
-      </div></div> <!-- /.section, /#content -->
-
-      <?php if ($page['sidebar_first']): ?>
-        <div id="sidebar-first" class="column sidebar"><div class="section">
-          <?php print render($page['sidebar_first']); ?>
-        </div></div> <!-- /.section, /#sidebar-first -->
+<?php if ($page['footer'] || !empty($site_footer)): ?>
+  <footer id="footer" class="clearfix container">
+    <div class="row clearfix">
+      <?php if ($page['footer']): ?>
+        <div class="column right footer-column">
+          <?php print render($page['footer']); ?>
+        </div> <!-- /.column /.right /.footer-column -->
       <?php endif; ?>
-
-      <?php if ($page['sidebar_second']): ?>
-        <div id="sidebar-second" class="column sidebar"><div class="section">
-          <?php print render($page['sidebar_second']); ?>
-        </div></div> <!-- /.section, /#sidebar-second -->
+      
+      <?php if (!empty($site_footer)): ?>
+        <div class="column left footer-column copyright-footer">
+          &copy; <?php print date('Y'); ?> <?php print $site_footer; ?>
+        </div> <!-- /.column /.left /.footer-column /.copyright-footer -->
       <?php endif; ?>
-
-    </div></div> <!-- /#main, /#main-wrapper -->
-
-    <div id="footer"><div class="section">
-      <?php print render($page['footer']); ?>
-    </div></div> <!-- /.section, /#footer -->
-
-  </div></div> <!-- /#page, /#page-wrapper -->
+    </div> <!-- /.row /.clearfix -->
+  </footer> <!-- /#footer /.row /.clearfix -->
+<?php endif; ?>

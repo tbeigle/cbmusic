@@ -146,6 +146,9 @@ function twitter_status_load($status_id) {
  * Saves a TwitterStatus object to {twitter}
  */
 function twitter_status_save($status) {
+  // Ensure we don't let MB characters go into MySQL because that will ruin the query.
+  $status->text = preg_replace('/[\x{10000}-\x{10FFFF}]/u', '', $status->text);
+
   $row = array(
     'twitter_id' => $status->id,
     'screen_name' => $status->user->screen_name,

@@ -1,0 +1,275 @@
+<?php
+
+/**
+ * @file
+ * songkick.install
+ */
+
+/**
+ * Implements hook_schema().
+ */
+function songkick_schema() {
+  $schema['songkick_artists'] = array(
+    'description' => 'Stores artist information from songkick.',
+    'fields' => array(
+      'artist_id' => array(
+        'description' => 'The songkick ID for the artist.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'mbid' => array(
+        'description' => 'The MusicBrainz ID for the artist.',
+        'type' => 'varchar',
+        'length' => 255,
+        'default' => '',
+      ),
+      'display_name' => array(
+        'description' => 'The songkick display name for the artist.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uri' => array(
+        'description' => 'The songkick URI for the artist page.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'import' => array(
+        'description' => 'Boolean integer determining whether to import events for the artist.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ),
+    ),
+    'primary key' => array('artist_id'),
+  );
+  
+  $schema['songkick_events'] = array(
+    'description' => 'Stores upcoming event details pulled from songkick.',
+    'fields' => array(
+      'event_id' => array(
+        'description' => 'The unique songkick ID for the event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'venue_id' => array(
+        'description' => 'The unique identifier for the venue at which the event is to be held.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uri' => array(
+        'description' => 'The songkick URI for the event page.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'display_name' => array(
+        'description' => 'The songkick display name for the event.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'time' => array(
+        'description' => 'A unix timestamp of the upcoming event.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
+      ),
+      'type' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'age_restriction' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'status' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'popularity' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'lat' => array(
+        'description' => 'The latitudinal coordinate for the event location.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'lng' => array(
+        'description' => 'The longitudinal coordinate for the event location.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'city' => array(
+        'description' => 'The city in which the event will take place.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('event_id'),
+  );
+  
+  $schema['songkick_metro_areas'] = array(
+    'description' => 'Stores metro area details pulled from songkick.',
+    'fields' => array(
+      'metro_area_id' => array(
+        'description' => 'The unique songkick ID for the metro area.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'display_name' => array(
+        'description' => 'The songkick display name for the metro area.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uri' => array(
+        'description' => 'The songkick URI for the metro area page.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'country' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'state' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('metro_area_id'),
+  );
+  
+  $schema['songkick_performances'] = array(
+    'description' => 'Stores artist to event relationships and data from songkick.',
+    'fields' => array(
+      'performance_id' => array(
+        'description' => 'The unique songkick ID for the artist to event relationship.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'artist_id' => array(
+        'description' => 'The unique identifier for the artist in the artists table.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'unsigned' => TRUE,
+        'default' => 0,
+      ),
+      'event_id' => array(
+        'description' => 'The unique songkick ID for the event in the events table.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'display_name' => array(
+        'description' => 'The songkick display name for the performance.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'billing_index' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'billing' => array(
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('performance_id'),
+  );
+  
+  $schema['songkick_venues'] = array(
+    'description' => 'Stores venue details pulled from songkick.',
+    'fields' => array(
+      'venue_id' => array(
+        'description' => 'The unique songkick ID for the venue.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'metro_area_id' => array(
+        'description' => 'The unique ID for the metro area in which the venue is located.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'display_name' => array(
+        'description' => 'The songkick display name for the venue.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'uri' => array(
+        'description' => 'The songkick URI for the venue page.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'lat' => array(
+        'description' => 'The latitudinal coordinate for the venue.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+      'lng' => array(
+        'description' => 'The longitudinal coordinate for the venue.',
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'default' => '',
+      ),
+    ),
+    'primary key' => array('venue_id'),
+  );
+  
+  return $schema;
+}
