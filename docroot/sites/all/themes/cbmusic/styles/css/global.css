@@ -136,11 +136,12 @@ ul.tweets {
   padding: 0;
   margin: 0;
   font: 24px/1.1 vincentregular, Arial, Helvetica, sans-serif;
-  overflow: hidden; }
+  overflow: hidden;
+  text-align: center; }
   .nav-region .nav .content ul li {
     list-style: none;
-    float: left;
-    padding: 0 10px;
+    display: inline-block;
+    padding: 0 3.9%;
     border-left: 1px solid #fff;
     margin: 0; }
     .nav-region .nav .content ul li:first-child {
@@ -148,6 +149,36 @@ ul.tweets {
     .nav-region .nav .content ul li a {
       display: block;
       padding: 5px; }
+
+.block.social-links .menu {
+  padding: 0;
+  margin: 0;
+  text-align: right; }
+  .block.social-links .menu li {
+    list-style: none;
+    display: inline-block;
+    margin-left: 2%;
+    text-align: left;
+    overflow: hidden; }
+    .block.social-links .menu li:first-child {
+      margin-left: 0; }
+    .block.social-links .menu li .social-link {
+      display: block;
+      height: 50px;
+      font-size: 0;
+      line-height: 0;
+      text-indent: -999px; }
+      .block.social-links .menu li .social-link.facebook, .block.social-links .menu li .social-link.instagram, .block.social-links .menu li .social-link.songkick {
+        width: 50px; }
+      .block.social-links .menu li .social-link.facebook {
+        background: url("../../images/FB-f-Logo__blue_50.png") 0 0 no-repeat; }
+      .block.social-links .menu li .social-link.instagram {
+        background: url("../../images/instagram.png") 0 0 no-repeat; }
+      .block.social-links .menu li .social-link.twitter {
+        width: 61px;
+        background: url("../../images/twitter.png") 0 0 no-repeat; }
+      .block.social-links .menu li .social-link.songkick {
+        background: url("../../images/social-logo-sk.png") 0 0 no-repeat; }
 
 #main-wrapper {
   margin-top: 20px; }

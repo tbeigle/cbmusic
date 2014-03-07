@@ -8,3 +8,88 @@
     }
   }
 }
+
+@media screen and (max-width: 760px) {
+  .cb-homepage.header-text-left .cb-header-text {
+    font-size: 72px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .cb-homepage.header-text-left .cb-header-text {
+    font-size: 56px;
+  }
+  
+  .block.banner-home.pre-ep .block-title {
+    font-size: 32px;
+  }
+  
+  .home-twitter-feed,
+  .home-instagram-feed {
+    display: none;
+  }
+  
+  .cb-contact-form h2 {
+    background: $colSky;
+    color: #333;
+  }
+  
+  .cb-homepage {
+    .burr-flipped-content {
+      float: none;
+      width: 100%;
+    }
+    
+    .burr-flipped-sidebar {
+      float: none;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .block.social-links .menu {
+    text-align: center;
+  }
+  
+  .cb-homepage.header-text-left .cb-header-text {
+    font-size: 42px;
+  }
+  
+  .block.banner-home.pre-ep .block-title {
+    font-size: 24px;
+  }
+  
+  .cb-homepage .cb-contact-form {
+    .form-submit {
+      display: block;
+      width: 100%;
+    }
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .block.social-links .menu li {
+    width: 22%;
+    margin-left: 0;
+    
+    .social-link {
+      &.facebook,
+      &.instagram,
+      &.songkick,
+      &.twitter {
+        width: 100%;
+        background-size: contain;
+      }
+    }
+  }
+  .cb-homepage.header-text-left .cb-header-text {
+    left: 10px;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .block.banner-home.pre-ep .block-title {
+    bottom: 10px;
+  }
+}

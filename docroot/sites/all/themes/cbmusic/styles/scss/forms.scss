@@ -1,1 +1,78 @@
 @import "mixins";
+
+label {
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.form-actions {
+  text-align: center;
+  
+  .form-submit {
+    @include vendorize(transition, all 0.25s ease);
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    //@include vendorize(border-radius, 15%);
+    font: {
+      family: $fntSansSpecial;
+      size: 18px;
+      weight: bold;
+    }
+    
+    color: #fff;
+    background: url('../../images/cb-header-textured-bg.jpg') 0 0 repeat;
+    border: none;
+    @include hoverActiveFocus(background, $colSky);
+    @include hoverActiveFocus(color, $colDenim);
+  }
+}
+
+.cb-contact-form {
+  h2 {
+    font: {
+      family: $fntSansSpecial;
+    }
+    
+    padding: 5px;
+    background: url('../../images/cb-header-textured-bg.jpg') 0 0 repeat;
+    margin: 0 0 10px;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .form-item,
+  .form-actions {
+    margin: 10px 0 0;
+    overflow: hidden;
+  }
+  
+  .webform-container-inline {
+    label {
+      float: left;
+      width: 16%;
+      padding: 10px 20px 0 0;
+      margin-right: 0;
+    }
+    
+    input[type="text"],
+    input[type="email"] {
+      float: right;
+      width: 84%;
+      padding: 5px;
+      font-size: 16px;
+      border: 1px solid $colSky;
+    }
+  }
+  
+  textarea {
+    border: 1px solid $colSky;
+    font-size: 16px;
+  }
+}
+
+.request-tour-date-form {
+  h2 {
+    font-size: 14px;
+  }
+}

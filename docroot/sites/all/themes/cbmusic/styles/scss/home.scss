@@ -140,10 +140,10 @@
 }
 
 .home-twitter-feed {
-  .view-content {
+  /*.view-content {
     height: 360px;
     overflow: scroll;
-  }
+  }*/
   
   font-size: 12px;
   
@@ -188,21 +188,91 @@
   }
 }
 
-.home-instagram-feed {
-  .view-content {
-    height: 320px;
-    overflow: scroll;
+.pane-songkick {
+  margin-bottom: 20px;
+  
+  h2 {
+    //text-align: center;
   }
+  
+  .concerts-by-songkick {
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+  
+  .tour-dates {
+    padding: 0;
+    margin: 0;
+    
+    li {
+      list-style: none;
+      margin-top: 10px;
+      
+      &:first-child {
+        .concert-header {
+          border-top: 1px solid $colSky;
+        }
+      }
+    }
+  }
+  
+  .concert-header {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid $colSky;
+    background: url('../../images/cb-header-textured-bg.jpg') 0 0 repeat;
+    overflow: hidden;
+    font: {
+      size: 12px;
+      weight: bold;
+    }
+    text-transform: uppercase;
+    
+    @include linkAllStates(color, #fff);
+    @include hoverActiveFocus(background, $colSky);
+    @include hoverActiveFocus(color, $colDenim);
+    
+    span {
+      float: left;
+    }
+    
+    .date-time,
+    .event-city {
+      width: 30%;
+    }
+    
+    .date-time {
+      padding-right: 3%;
+    }
+    
+    .event-venue {
+      width: 40%;
+    }
+    
+    .event-city {
+      float: right;
+      padding-left: 3%;
+    }
+  }
+}
+
+.home-instagram-feed {
+  margin-bottom: 20px;
   
   .instagrams {
     padding: 0;
     margin: 0;
+    overflow: hidden;
   }
   
   .instagram-row {
     list-style: none;
     float: left;
-    margin: 5px;
+    width: 33.333%;
+    max-width: 150px;
+    padding: 5px;
   }
 }
 

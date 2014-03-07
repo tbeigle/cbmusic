@@ -78,10 +78,11 @@
     color: #213744; }
 
 .home-twitter-feed {
-  font-size: 12px; }
-  .home-twitter-feed .view-content {
+  /*.view-content {
     height: 360px;
-    overflow: scroll; }
+    overflow: scroll;
+  }*/
+  font-size: 12px; }
   .home-twitter-feed .tweet {
     overflow: hidden;
     padding: 10px 3px 5px;
@@ -112,16 +113,61 @@
     padding-left: 28px;
     background: url("../../images/logo-twitter-24x20.png") 0 0 no-repeat; }
 
-.home-instagram-feed .view-content {
-  height: 320px;
-  overflow: scroll; }
-.home-instagram-feed .instagrams {
-  padding: 0;
-  margin: 0; }
-.home-instagram-feed .instagram-row {
-  list-style: none;
-  float: left;
-  margin: 5px; }
+.pane-songkick {
+  margin-bottom: 20px; }
+  .pane-songkick .concerts-by-songkick {
+    display: block;
+    width: 100%;
+    text-align: center; }
+  .pane-songkick .tour-dates {
+    padding: 0;
+    margin: 0; }
+    .pane-songkick .tour-dates li {
+      list-style: none;
+      margin-top: 10px; }
+      .pane-songkick .tour-dates li:first-child .concert-header {
+        border-top: 1px solid #d3dce5; }
+  .pane-songkick .concert-header {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    border-bottom: 1px solid #d3dce5;
+    background: url("../../images/cb-header-textured-bg.jpg") 0 0 repeat;
+    overflow: hidden;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase; }
+    .pane-songkick .concert-header:link, .pane-songkick .concert-header:visited, .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      color: white; }
+    .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      background: #d3dce5; }
+    .pane-songkick .concert-header:hover, .pane-songkick .concert-header:active, .pane-songkick .concert-header:focus {
+      color: #0d1520; }
+    .pane-songkick .concert-header span {
+      float: left; }
+    .pane-songkick .concert-header .date-time,
+    .pane-songkick .concert-header .event-city {
+      width: 30%; }
+    .pane-songkick .concert-header .date-time {
+      padding-right: 3%; }
+    .pane-songkick .concert-header .event-venue {
+      width: 40%; }
+    .pane-songkick .concert-header .event-city {
+      float: right;
+      padding-left: 3%; }
+
+.home-instagram-feed {
+  margin-bottom: 20px; }
+  .home-instagram-feed .instagrams {
+    padding: 0;
+    margin: 0;
+    overflow: hidden; }
+  .home-instagram-feed .instagram-row {
+    list-style: none;
+    float: left;
+    width: 33.333%;
+    max-width: 150px;
+    padding: 5px; }
 
 .instagram-title {
   padding-bottom: 10px;

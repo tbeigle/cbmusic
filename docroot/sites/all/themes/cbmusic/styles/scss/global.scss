@@ -162,11 +162,12 @@ ul.tweets {
       margin: 0;
       font: 24px/1.1 $fntSansSpecial;
       overflow: hidden;
+      text-align: center;
       
       li {
         list-style: none;
-        float: left;
-        padding: 0 10px;
+        display: inline-block;
+        padding: 0 3.9%;
         border-left: 1px solid #fff;
         margin: 0;
         
@@ -177,6 +178,57 @@ ul.tweets {
         a {
           display: block;
           padding: 5px;
+        }
+      }
+    }
+  }
+}
+
+.block.social-links {
+  .menu {
+    padding: 0;
+    margin: 0;
+    text-align: right;
+    
+    li {
+      list-style: none;
+      display: inline-block;
+      margin-left: 2%;
+      text-align: left;
+      overflow: hidden;
+      
+      &:first-child {
+        margin-left: 0;
+      }
+      
+      .social-link {
+        display: block;
+        height: 50px;
+        font-size: 0;
+        line-height: 0;
+        text-indent: -999px;
+        
+        &.facebook,
+        &.instagram,
+        &.songkick {
+          width: 50px;
+        }
+        
+        &.facebook {
+          background: url('../../images/FB-f-Logo__blue_50.png') 0 0 no-repeat;
+        }
+        
+        &.instagram {
+          background: url('../../images/instagram.png') 0 0 no-repeat;
+        }
+        
+        &.twitter {
+          width: 61px;
+          background: url('../../images/twitter.png') 0 0 no-repeat;
+        }
+        
+        &.songkick {
+          background: url('../../images/social-logo-sk.png') 0 0 no-repeat;
         }
       }
     }

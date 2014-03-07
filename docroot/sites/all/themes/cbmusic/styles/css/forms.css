@@ -1,0 +1,55 @@
+label {
+  font-size: 12px;
+  text-transform: uppercase; }
+
+.form-actions {
+  text-align: center; }
+  .form-actions .form-submit {
+    -webkit-transition: all 0.25s ease;
+    -moz-transition: all 0.25s ease;
+    -ms-transition: all 0.25s ease;
+    -o-transition: all 0.25s ease;
+    transition: all 0.25s ease;
+    cursor: pointer;
+    display: inline-block;
+    padding: 10px;
+    font-family: vincentregular, Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    background: url("../../images/cb-header-textured-bg.jpg") 0 0 repeat;
+    border: none; }
+    .form-actions .form-submit:hover, .form-actions .form-submit:active, .form-actions .form-submit:focus {
+      background: #d3dce5; }
+    .form-actions .form-submit:hover, .form-actions .form-submit:active, .form-actions .form-submit:focus {
+      color: #0d1520; }
+
+.cb-contact-form h2 {
+  font-family: vincentregular, Arial, Helvetica, sans-serif;
+  padding: 5px;
+  background: url("../../images/cb-header-textured-bg.jpg") 0 0 repeat;
+  margin: 0 0 10px;
+  text-align: center;
+  color: #fff; }
+.cb-contact-form .form-item,
+.cb-contact-form .form-actions {
+  margin: 10px 0 0;
+  overflow: hidden; }
+.cb-contact-form .webform-container-inline label {
+  float: left;
+  width: 16%;
+  padding: 10px 20px 0 0;
+  margin-right: 0; }
+.cb-contact-form .webform-container-inline input[type="text"],
+.cb-contact-form .webform-container-inline input[type="email"] {
+  float: right;
+  width: 84%;
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #d3dce5; }
+.cb-contact-form textarea {
+  border: 1px solid #d3dce5;
+  font-size: 16px; }
+
+.request-tour-date-form h2 {
+  font-size: 14px; }
