@@ -288,6 +288,9 @@ function songkick_import_artist_calendars($artist_ids = array()) {
     }
   }
   
+  // Delete all events to prevent cancelled events from being preserved
+  _songkick_delete_all_events();
+  
   $all_ids = songkick_get_saved_ids('all');
   if (empty($artist_ids)) $artist_ids = songkick_get_saved_ids('artists', TRUE);
   
@@ -308,7 +311,7 @@ function songkick_import_artist_calendars($artist_ids = array()) {
       if ($venue->displayName == 'Unknown venue') $venue->displayName = 'Private House Show';
       
       $record_set = (object) array(
-        'events' => isset($all_ids['events'][$event->id]) ? 'updates' : 'inserts',
+        'events' => 'inserts',
         'venues' => isset($all_ids['venues'][$venue->id]) ? 'updates' : 'inserts',
         'metro_areas' => isset($all_ids['metro_areas'][$metro_area->id]) ? 'updates' : 'inserts',
       );
@@ -379,6 +382,7 @@ function songkick_import_artist_calendars($artist_ids = array()) {
     }
   }
   
+  // Update and insert all Songkick records.
   foreach ($updates as $table => $data) {
     // Insert new records
     if (!empty($data['inserts'])) {
@@ -520,6 +524,19 @@ function _songkick_delete_artist_data($artist_ids = array()) {
       ->condition('artist_id', $artist_ids, 'IN')
       ->execute();
   }
+}
+
+/**
+ * Deletes all events and performances from the database
+ */
+function _songkick_delete_all_events() {
+  $query = db_delete('songkick_events')
+    ->condition('event_id', 0, '<>')
+    ->execute();
+  
+  $query = db_delete('songkick_performances')
+    ->condition('event_id', 0, '<>')
+    ->execute();
 }
 
 /**
