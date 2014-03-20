@@ -13,11 +13,6 @@
 function songkick_admin_settings($form, &$form_state) {
   $form = array();
   
-  // For development ONLY
-  $cb_artist_id = '4964903';
-  $default_api_key = '5D6N6iLat7VASy4k';
-  //$default_api_key = '';
-  
   $apply_link = l(t('apply to SongKick'), 'http://www.songkick.com/api_key_requests/new', array('attributes' => array('target' => '_blank')));
   $form['songkick_api_key'] = array(
     '#title' => t('API Key'),

@@ -11,34 +11,63 @@ class songkickInterface {
   var $url_base = 'http://api.songkick.com/api/3.0/';
   var $api_key;
   
-  function __construct() {
+  public function __construct() {
     $this->api_key = variable_get('songkick_api_key', '');
   }
   
   /**
    * Imports artist events
    */
-  function import_artist_calendar($artist_id = '', $mbid = '') {
+  public function import_artist_calendar($artist_id = '', $mbid = '') {
+    $events = array();
     if (!empty($this->api_key) && (!empty($artist_id) || !empty($mbid))) {
-      $url = $this->url_base . 'artists/' . (!empty($artist_id) ? $artist_id : 'mbid:' . $mbid) . '/calendar.json?apikey=' . $this->api_key;
+      $complete = FALSE;
+      $total_entries = 0;
       
-      $data = $this->_call($url);
+      $url_base = $this->url_base . 'artists/' . (!empty($artist_id) ? $artist_id : 'mbid:' . $mbid) . '/calendar.json';
+      $options = array(
+        'query' => array(
+          'apikey' => $this->api_key,
+          'perPage' => 50,
+          'page' => 1,
+        ),
+      );
       
-      if (!empty($data['resultsPage']['results']['event'])) {
-        return $data['resultsPage']['results']['event'];
+      while (!$complete) {
+        $url = url($url_base, $options);
+        
+        $data = $this->_call($url);
+        $status = !empty($data->resultsPage->status) ? $data->resultsPage->status : '';
+        if (empty($total_entries) && !empty($data->resultsPage->totalEntries)) $total_entries = $data->resultsPage->totalEntries;
+        
+        if (!empty($data->resultsPage->results->event)) {
+          $events += $data->resultsPage->results->event;
+        }
+        
+        $complete = ($total_entries <= count($events) || $status != 'ok');
+        $options['query']['page']++;
       }
     }
     
-    return array();
+    return $events;
   } 
   
   /**
    * Performs the API call
    */
   private function _call($url) {
-    feeds_include_library('http_request.inc', 'http_request');
-    $result = http_request_get($url);
+    if (!songkick_use_curl()) {
+      watchdog('songkick', 'Cannot use cURL to get Songkick data.', WATCHDOG_ERROR);
+      return FALSE;
+    }
     
-    return drupal_json_decode($result->data);
+    $ch = curl_init($url);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    
+    $result = curl_exec($ch);
+    
+    curl_close($ch);
+    
+    return json_decode($result);
   }
 }

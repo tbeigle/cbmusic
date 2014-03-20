@@ -2,5 +2,4 @@ name = SongKick
 description = API integration with SongKick
 core = 7.x
 package = songkick
-dependencies[] = feeds
 files[] = includes/songkick.api.inc

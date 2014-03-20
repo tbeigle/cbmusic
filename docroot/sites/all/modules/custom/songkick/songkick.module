@@ -297,13 +297,15 @@ function songkick_import_artist_calendars($artist_ids = array()) {
     if (empty($result)) continue;
     
     foreach ($result as $event) {
-      $event = (object) $event;
-      $venue = (object) $event->venue;
-      $metro_area = (object) $venue->metroArea;
-      $start = (object) $event->start;
+      $venue = $event->venue;
+      $metro_area = $venue->metroArea;
+      $start = $event->start;
       
       $time_string = $start->date . ' ' . $start->time;
       $time = strtotime($time_string);
+      
+      if (empty($venue->id)) $venue->id = 0;
+      if ($venue->displayName == 'Unknown venue') $venue->displayName = 'Private House Show';
       
       $record_set = (object) array(
         'events' => isset($all_ids['events'][$event->id]) ? 'updates' : 'inserts',
@@ -314,9 +316,9 @@ function songkick_import_artist_calendars($artist_ids = array()) {
       $updates['songkick_events'][$record_set->events][$event->id] = array(
         'venue_id' => $venue->id,
         'time' => $time,
-        'lat' => !empty($event->location['lat']) ? $event->location['lat'] : '',
-        'lng' => !empty($event->location['lng']) ? $event->location['lng'] : '',
-        'city' => !empty($event->location['city']) ? $event->location['city'] : '',
+        'lat' => !empty($event->location->lat) ? $event->location->lat : '',
+        'lng' => !empty($event->location->lng) ? $event->location->lng : '',
+        'city' => !empty($event->location->city) ? $event->location->city : '',
       );
       
       foreach ($fields_to_props['songkick_events'] as $field => $prop) {
@@ -327,23 +329,25 @@ function songkick_import_artist_calendars($artist_ids = array()) {
       $updates['songkick_metro_areas'][$record_set->metro_areas][$metro_area->id] = array(
         'metro_area_id' => $metro_area->id,
         'display_name' => $metro_area->displayName,
-        'uri' => $metro_area->uri,
-        'country' => $metro_area->country['displayName'],
-        'state' => $metro_area->state['displayName'],
+        'uri' => !empty($metro_area->uri) ? $metro_area->uri : '',
+        'country' => $metro_area->country->displayName,
+        'state' => $metro_area->state->displayName,
       );
+      
+      if (empty($venue->id)) $venue->id = 0;
+      if ($venue->displayName == 'Unknown venue') $venue->displayName = 'Private House Show';
       
       $updates['songkick_venues'][$record_set->venues][$venue->id] = array(
         'venue_id' => $venue->id,
         'metro_area_id' => $metro_area->id,
         'display_name' => $venue->displayName,
-        'uri' => $venue->uri,
+        'uri' => !empty($venue->uri) ? $venue->uri : '',
         'lat' => !empty($venue->lat) ? $venue->lat : '',
         'lng' => !empty($venue->lng) ? $venue->lng : '',
       );
       
       foreach ($event->performance as $performance) {
-        $performance = (object) $performance;
-        $artist = (object) $performance->artist;
+        $artist = $performance->artist;
         
         $performance_set = isset($all_ids['performances'][$performance->id]) ? 'updates' : 'inserts';
         $artist_set = in_array($artist->id, $all_ids['artists']) ? 'updates' : 'inserts';
@@ -352,7 +356,7 @@ function songkick_import_artist_calendars($artist_ids = array()) {
           $updates['songkick_artists'][$artist_set][$artist->id] = array(
             'artist_id' => $artist->id,
             'display_name' => $artist->displayName,
-            'uri' => $artist->uri,
+            'uri' => !empty($artist->uri) ? $artist->uri : '',
             'import' => 0,
           );
         }
@@ -475,7 +479,6 @@ function _songkick_table_fields_to_api_props() {
  * Bulk inserts
  */
 function _songkick_bulk_insert($table, $fields, $records) {
-  watchdog('songkick', 'bulk insert check:<pre>' . print_r($records, TRUE) . '</pre>');
   $query = db_insert($table)->fields($fields);
   foreach ($records as $record) {
     $query->values($record);
@@ -690,4 +693,18 @@ function songkick_get_saved_ids($type = 'all', $only_enabled = FALSE) {
   }
   
   return $output;
+}
+
+/**
+ * Slightly augmented copy of http_request_use_curl() in feeds/libraries/http_request.inc
+ *
+ * Decides if it's possible to use cURL or not.
+ *
+ * @return bool
+ *   TRUE if cURL is available, FALSE otherwise.
+ */
+function songkick_use_curl() {
+  // Check availability of cURL on the system.
+  $basedir = ini_get("open_basedir");
+  return function_exists('curl_init') && !ini_get('safe_mode') && empty($basedir);
 }
