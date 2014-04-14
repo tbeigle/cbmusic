@@ -37,6 +37,32 @@ function cbmusic_preprocess_page(&$vars) {
   $vars['header_text'] = theme_get_setting('header_text');
 }
 
+function cbmusic_preprocess(&$vars, $hook) {
+  //print '<pre>' . print_r($hook, TRUE) . '</pre>';
+  if ($hook == 'jplayer_view_playlist') {
+    $vars['theme_hook_suggestions'][] = 'jplayer';
+  }
+}
+
+/**
+ * Implements hook_theme_registry_alter().
+ */
+/*function cbmusic_theme_registry_alter(&$theme_registry) {
+  global $theme_path;
+  //watchdog('cbmusic', 'Theme registry:<pre>' . print_r($theme_registry, TRUE) . '</pre>');
+  if (!isset($theme_registry['jplayer']['path'])) {
+    $theme_registry['jplayer']['path'] = $theme_path . '/jplayer';
+  }
+  //watchdog('cbmusic', 'Theme registry:<pre>' . print_r($theme_registry, TRUE) . '</pre>');
+}*/
+
+/**
+ * Implements template_preprocess_jplayer().
+ */
+/*function cbmusic_preprocess_jplayer(&$vars) {
+  dpm($vars);
+}*/
+
 /**
  * Adds apple shortcut icons to the HTML head
  */
