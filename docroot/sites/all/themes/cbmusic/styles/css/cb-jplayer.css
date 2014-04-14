@@ -1,0 +1,84 @@
+.cb-jplayer {
+  float: left;
+  width: 504px;
+  padding-top: 5px; }
+  .cb-jplayer a {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -ms-transition: none;
+    -o-transition: none;
+    transition: none; }
+  .cb-jplayer .jp-audio {
+    width: 100%;
+    overflow: hidden; }
+    .cb-jplayer .jp-audio .jp-type-playlist {
+      overflow: hidden;
+      -webkit-border-radius: 6px;
+      -moz-border-radius: 6px;
+      -ms-border-radius: 6px;
+      -o-border-radius: 6px;
+      border-radius: 6px; }
+      .cb-jplayer .jp-audio .jp-type-playlist .jp-interface {
+        float: left;
+        width: auto;
+        padding: 5px 5px 8px;
+        height: 53px;
+        border-color: #d3dce5; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-play, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-pause, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-stop, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-mute, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-unmute, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-previous, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-next {
+          display: block;
+          left: 0; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-play, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-pause {
+          top: 0; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-stop {
+          top: 6px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-mute, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-unmute {
+          top: 12px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-previous, .cb-jplayer .jp-audio .jp-type-playlist .jp-interface a.jp-next {
+          top: 6px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-volume-bar,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-progress,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-current-time,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-duration {
+          position: relative;
+          left: 0; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-kitchen-sink-wrapper {
+          padding-left: 5px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-mute-wrapper,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-unmute-wrapper {
+          padding-left: 5px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-controls li {
+          position: relative;
+          float: left; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-controls a {
+          position: relative; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-previous-wrapper,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-play-pause-wrapper,
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-next-wrapper {
+          padding-right: 2px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-progress {
+          top: 12px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-volume-bar {
+          top: 17px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-volume-bar-wrapper {
+          padding-left: 10px; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-current-time {
+          float: left;
+          top: 11px;
+          margin-bottom: 0; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-interface .jp-duration {
+          top: -5px; }
+      .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist {
+        float: left;
+        width: 150px;
+        height: 53px;
+        border: 1px solid #d3dce5;
+        border-left: 1px solid #3f401d;
+        overflow: scroll; }
+        .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul {
+          padding: 0 5px;
+          border: none;
+          font-size: 10px; }
+          .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul a:link, .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul a:visited {
+            color: #2d4e5f; }
+          .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul a:hover, .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul a:active, .cb-jplayer .jp-audio .jp-type-playlist .jp-playlist ul a:focus {
+            color: #0d1520; }

@@ -18,6 +18,33 @@
     line-height: 0; }
     .block.banner-home.pre-ep .content img {
       display: block; }
+  .block.banner-home.single-release {
+    background: #fbedc6;
+    overflow: hidden; }
+    .block.banner-home.single-release .block-title {
+      position: absolute;
+      top: 250px;
+      width: 50%;
+      padding: 0 30px;
+      font: 32px/1.1 vincentregular, Arial, Helvetica, sans-serif;
+      color: #0d1520; }
+      .block.banner-home.single-release .block-title a:link, .block.banner-home.single-release .block-title a:visited {
+        color: #0d1520; }
+      .block.banner-home.single-release .block-title a:hover, .block.banner-home.single-release .block-title a:active, .block.banner-home.single-release .block-title a:focus {
+        color: #213744; }
+    .block.banner-home.single-release .image-wrapper {
+      float: right;
+      width: 50%;
+      max-width: 1080px; }
+    .block.banner-home.single-release .subhead {
+      position: absolute;
+      bottom: 24px;
+      width: 50%;
+      padding: 0 30px;
+      margin: 0;
+      text-align: right;
+      font: 18px/1.1 vincentregular, Arial, Helvetica, sans-serif;
+      color: #f91a1d; }
   .block.banner-home.new-ep-link {
     position: relative;
     width: 100%;
@@ -76,6 +103,9 @@
     color: #0d1520; }
   .cb-homepage.header-text-left .cb-header-text a:hover, .cb-homepage.header-text-left .cb-header-text a:active, .cb-homepage.header-text-left .cb-header-text a:focus {
     color: #213744; }
+
+.you-cant-take-me-lyric-video {
+  margin-bottom: 20px; }
 
 .home-twitter-feed {
   /*.view-content {

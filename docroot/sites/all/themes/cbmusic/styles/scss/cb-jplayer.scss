@@ -1,0 +1,129 @@
+@import "mixins";
+
+.cb-jplayer {
+  float: left;
+  width: 504px;
+  padding-top: 5px;
+  
+  a {
+    @include vendorize(transition, none);
+  }
+  
+  .jp-audio {
+    width: 100%;
+    overflow: hidden;
+    
+    .jp-type-playlist {
+      overflow: hidden;
+      @include vendorize(border-radius, 6px);
+      
+      .jp-interface {
+        float: left;
+        width: auto;
+        padding: 5px 5px 8px;
+        height: 53px;
+        border-color: $colSky;
+        
+        a {
+          &.jp-play,
+          &.jp-pause,
+          &.jp-stop,
+          &.jp-mute,
+          &.jp-unmute,
+          &.jp-previous,
+          &.jp-next {
+            display: block;
+            left: 0;
+          }
+          &.jp-play,
+          &.jp-pause {
+            top: 0;
+          }
+          &.jp-stop {
+            top: 6px;
+          }
+          &.jp-mute,
+          &.jp-unmute {
+            top: 12px;
+          }
+          
+          &.jp-previous,
+          &.jp-next {
+            top: 6px;
+          }
+        }
+        
+        .jp-volume-bar,
+        .jp-progress,
+        .jp-current-time,
+        .jp-duration {
+          position: relative;
+          left: 0;
+        }
+        
+        .jp-kitchen-sink-wrapper {
+          padding-left: 5px;
+        }
+        
+        .jp-mute-wrapper,
+        .jp-unmute-wrapper {
+          padding-left: 5px;
+        }
+        
+        .jp-controls {
+          li {
+            position: relative;
+            float: left;
+          }
+          
+          a {
+            position: relative;
+          }
+        }
+        
+        .jp-previous-wrapper,
+        .jp-play-pause-wrapper,
+        .jp-next-wrapper {
+          padding-right: 2px;
+        }
+        .jp-progress {
+          top: 12px;
+        }
+        .jp-volume-bar {
+          top: 17px;
+        }
+        .jp-volume-bar-wrapper {
+          padding-left: 10px;
+        }
+        .jp-current-time {
+          float: left;
+          top: 11px;
+          margin-bottom: 0;
+        }
+        .jp-duration {
+          top: -5px;
+        }
+      }
+      
+      .jp-playlist {
+        float: left;
+        width: 150px;
+        height: 53px;
+        border: 1px solid $colSky;
+        border-left: 1px solid $colEPJacket;
+        overflow: scroll;
+        
+        ul {
+          padding: 0 5px;
+          border: none;
+          font-size: 10px;
+          
+          a {
+            @include linkVisited(color, $colPreEPJacket);
+            @include hoverActiveFocus(color, $colDenim);
+          }
+        }
+      }
+    }
+  }
+}
