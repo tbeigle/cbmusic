@@ -31,6 +31,42 @@
     }
   }
   
+  &.single-release {
+    background: $colSnglCvrBG;
+    overflow: hidden;
+    
+    .block-title {
+      position: absolute;
+      top: 250px;
+      width: 50%;
+      padding: 0 30px;
+      font: 32px/1.1 $fntSansSpecial;
+      color: $colDenim;
+      
+      a {
+        @include linkVisited(color, $colDenim);
+        @include hoverActiveFocus(color, $colPreEPBuilding);
+      }
+    }
+    
+    .image-wrapper {
+      float: right;
+      width: 50%;
+      max-width: 1080px;
+    }
+    
+    .subhead {
+      position: absolute;
+      bottom: 24px;
+      width: 50%;
+      padding: 0 30px;
+      margin: 0;
+      text-align: right;
+      font: 18px/1.1 $fntSansSpecial;
+      color: $colSnglRed;
+    }
+  }
+  
   &.new-ep-link {
     position: relative;
     width: 100%;
@@ -138,7 +174,9 @@
     }
   }
 }
-
+.you-cant-take-me-lyric-video {
+  margin-bottom: 20px;
+}
 .home-twitter-feed {
   /*.view-content {
     height: 360px;

@@ -81,6 +81,12 @@ ul.tweets {
 .error-copy {
   text-align: center; }
 
+.region-logo {
+  overflow: hidden; }
+  .region-logo .block.social-links {
+    float: right;
+    width: 240px; }
+
 #page-wrapper {
   width: 100%;
   max-width: 1020px;
@@ -109,6 +115,12 @@ ul.tweets {
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   font-size: 0;
   line-height: 0; }
+  .header-top .contextual-links-wrapper,
+  .header-top .block .content,
+  .nav-region .contextual-links-wrapper,
+  .nav-region .block .content {
+    font-size: 12px;
+    line-height: normal; }
   .header-top a:link, .header-top a:visited,
   .nav-region a:link,
   .nav-region a:visited {

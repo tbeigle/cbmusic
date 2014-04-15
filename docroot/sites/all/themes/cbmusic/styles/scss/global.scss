@@ -91,6 +91,15 @@ ul.tweets {
   text-align: center;
 }
 
+.region-logo {
+  overflow: hidden;
+  
+  .block.social-links {
+    float: right;
+    width: 240px;
+  }
+}
+
 // page elements
 #page-wrapper {
   width: 100%;
@@ -120,6 +129,12 @@ ul.tweets {
   @include vendorize(box-shadow, 0 0 5px 5px rgba(0,0,0,0.4));
   font-size: 0;
   line-height: 0;
+  
+  .contextual-links-wrapper,
+  .block .content {
+    font-size: 12px;
+    line-height: normal;
+  }
   
   a {
     &:link,

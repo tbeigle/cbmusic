@@ -35,6 +35,7 @@ settings[header_text] = Cory Bishop
 
 ; Stylesheets
 stylesheets[all][] = styles/css/global.css
+stylesheets[all][] = styles/css/cb-jplayer.css
 stylesheets[all][] = styles/css/forms.css
 stylesheets[all][] = styles/css/home.css
 stylesheets[all][] = styles/css/landing-pages.css
