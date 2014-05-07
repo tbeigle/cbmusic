@@ -1,0 +1,20 @@
+@import "mixins";
+@import "global";
+@import "cb-jplayer";
+@import "forms";
+@import "home";
+@import "landing-pages";
+@import "media-queries";
+
+html {
+  width: 100%;
+  background: url("../../images/cb-textured-bg.jpg") 0 0 repeat;
+  margin: 0;
+}
+
+body {
+  width: 96%;
+  padding: 20px;
+  margin: 20px auto 0;
+  background: #fff;
+}
