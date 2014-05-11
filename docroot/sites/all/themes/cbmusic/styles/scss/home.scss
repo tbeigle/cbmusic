@@ -125,19 +125,6 @@
 }
 
 .cb-homepage {
-  #page-wrapper {
-    position: relative;
-    margin: auto;
-    
-    &> .inner {
-      background: #fff;
-    }
-    
-    header {
-      padding: 0;
-    }
-  }
-  
   .cb-header-text {
     position: absolute;
     right: 30px;

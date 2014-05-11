@@ -88,6 +88,7 @@ ul.tweets {
     width: 240px; }
 
 #page-wrapper {
+  position: relative;
   width: 100%;
   max-width: 1020px;
   margin: auto;
@@ -97,9 +98,12 @@ ul.tweets {
   -o-box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4);
   box-shadow: 0 0 5px 5px rgba(0, 0, 0, 0.4); }
   #page-wrapper > .inner {
+    padding: 0 0 20px;
     background: #fff; }
-    #page-wrapper > .inner > div, #page-wrapper > .inner > header, #page-wrapper > .inner > footer {
+    #page-wrapper > .inner > div {
       padding: 0 20px; }
+  #page-wrapper header {
+    padding: 0; }
 
 .header-top,
 .nav-region {
@@ -204,6 +208,46 @@ ul.tweets {
 .copyright-footer {
   font-size: 10px;
   color: #fff; }
+
+/**
+ * Right sidebar pages
+ */
+.one-sidebar.sidebar-second #content-wrapper {
+  float: left;
+  width: 68.085%; }
+.one-sidebar.sidebar-second #cb-sidebar-second {
+  float: right;
+  width: 31.915%; }
+.one-sidebar.sidebar-second .twitter-feed {
+  font-size: 12px; }
+  .one-sidebar.sidebar-second .twitter-feed .tweet {
+    overflow: hidden;
+    padding: 10px 3px 5px;
+    border-bottom: 1px solid #d3dce5; }
+  .one-sidebar.sidebar-second .twitter-feed .tweet-img {
+    float: left;
+    width: 15.335%; }
+  .one-sidebar.sidebar-second .twitter-feed .tweet-message {
+    float: right;
+    width: 84.665%;
+    padding-left: 10px; }
+  .one-sidebar.sidebar-second .twitter-feed .tweet-time-ago {
+    clear: both;
+    text-align: right;
+    font-size: 10px; }
+  .one-sidebar.sidebar-second .twitter-feed .block-title {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #d3dce5;
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.25;
+    text-align: center; }
+    .one-sidebar.sidebar-second .twitter-feed .block-title a {
+      display: inline-block;
+      height: auto;
+      min-height: 20px;
+      padding-left: 28px;
+      background: url("../../images/logo-twitter-24x20.png") 0 0 no-repeat; }
 
 .cb-jplayer {
   float: left;
@@ -424,13 +468,6 @@ label {
     .block.banner-home.new-ep-link:hover .ep-title a:link .itunes, .block.banner-home.new-ep-link:hover .ep-title a:visited .itunes, .block.banner-home.new-ep-link:hover .ep-title a:hover .itunes, .block.banner-home.new-ep-link:hover .ep-title a:active .itunes, .block.banner-home.new-ep-link:hover .ep-title a:focus .itunes {
       color: #4d4227; }
 
-.cb-homepage #page-wrapper {
-  position: relative;
-  margin: auto; }
-  .cb-homepage #page-wrapper > .inner {
-    background: #fff; }
-  .cb-homepage #page-wrapper header {
-    padding: 0; }
 .cb-homepage .cb-header-text {
   position: absolute;
   right: 30px;
@@ -721,25 +758,6 @@ label {
     width: 100%;
     max-width: 200px; }
 
-  .block.banner-home.single-release .block-title {
-    position: relative;
-    top: auto;
-    float: none;
-    clear: both;
-    width: 100%;
-    padding: 20px 20px 0;
-    margin: 0 auto 10px;
-    text-align: center;
-    font-size: 24px; }
-  .block.banner-home.single-release .subhead {
-    position: relative;
-    bottom: auto;
-    clear: both;
-    width: 100%;
-    padding: 100px 20px 0;
-    text-align: center;
-    font-size: 12px; }
-
   .block.banner-home.pre-ep .block-title {
     bottom: 10px; } }
 @media screen and (max-width: 390px) {
@@ -759,10 +777,9 @@ label {
   .block.banner-home.single-release .subhead {
     position: relative;
     bottom: auto;
-    clear: both;
-    width: 100%;
+    float: left;
     padding: 100px 20px 0;
-    text-align: center;
+    text-align: left;
     font-size: 12px; } }
 html {
   width: 100%;
