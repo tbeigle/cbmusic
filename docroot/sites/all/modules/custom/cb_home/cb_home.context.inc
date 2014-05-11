@@ -26,13 +26,28 @@ function cb_home_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'block-4' => array(
-          'module' => 'block',
-          'delta' => '4',
-          'region' => 'header',
+        'views-songs-block_jplayer' => array(
+          'module' => 'views',
+          'delta' => 'songs-block_jplayer',
+          'region' => 'logo',
           'weight' => '-10',
         ),
+        'menu-menu-social-links' => array(
+          'module' => 'menu',
+          'delta' => 'menu-social-links',
+          'region' => 'logo',
+          'weight' => '-9',
+        ),
+        'block-6' => array(
+          'module' => 'block',
+          'delta' => '6',
+          'region' => 'header',
+          'weight' => '-8',
+        ),
       ),
+    ),
+    'theme_html' => array(
+      'class' => 'header-text-left',
     ),
   );
   $context->condition_mode = 0;
