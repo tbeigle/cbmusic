@@ -175,6 +175,10 @@
     }
   }
   
+  .nav-region .nav .content ul {
+    font-size: 18px;
+  }
+  
   .cb-homepage .cb-contact-form {
     .form-submit {
       display: block;
@@ -242,6 +246,12 @@
       padding: 100px 20px 0;
       text-align: left;
       font-size: 12px;
+    }
+    
+    .image-wrapper {
+      float: none;
+      width: 100%;
+      margin: auto;
     }
   }
 }

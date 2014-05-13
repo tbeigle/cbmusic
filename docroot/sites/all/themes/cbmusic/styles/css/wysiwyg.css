@@ -777,6 +777,9 @@ label {
   .block.banner-home.single-release .block-title {
     font-size: 20px; }
 
+  .nav-region .nav .content ul {
+    font-size: 18px; }
+
   .cb-homepage .cb-contact-form .form-submit {
     display: block;
     width: 100%; }
@@ -822,7 +825,11 @@ label {
     float: left;
     padding: 100px 20px 0;
     text-align: left;
-    font-size: 12px; } }
+    font-size: 12px; }
+  .block.banner-home.single-release .image-wrapper {
+    float: none;
+    width: 100%;
+    margin: auto; } }
 html {
   width: 100%;
   background: url("../../images/cb-textured-bg.jpg") 0 0 repeat;
