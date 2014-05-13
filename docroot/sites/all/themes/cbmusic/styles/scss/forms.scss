@@ -3,6 +3,7 @@
 label {
   font-size: 12px;
   text-transform: uppercase;
+  color: $colPreEPJacket
 }
 
 .form-actions {
@@ -28,7 +29,8 @@ label {
   }
 }
 
-.cb-contact-form {
+.cb-contact-form,
+.page-node-53 {
   h2 {
     font: {
       family: $fntSansSpecial;
@@ -47,27 +49,45 @@ label {
     overflow: hidden;
   }
   
-  .webform-container-inline {
-    label {
+  .webform-container-inline,
+  .webform-component-textarea {
+    /*label {
       float: left;
       width: 16%;
       padding: 10px 20px 0 0;
       margin-right: 0;
+    }*/
+    
+    font-size: 16px;
+    line-height: 1.25;
+    
+    label {
+      display: block;
+      margin: 0;
+      
+      &.compact-form-label {
+        left: 10px;
+        top: 9px;
+      }
     }
     
     input[type="text"],
-    input[type="email"] {
-      float: right;
-      width: 84%;
-      padding: 5px;
+    input[type="email"],
+    textarea {
+      //float: right;
+      //width: 84%;
+      display: block;
+      width: 100%;
+      padding: 5px 10px;
       font-size: 16px;
       border: 1px solid $colSky;
     }
-  }
-  
-  textarea {
-    border: 1px solid $colSky;
-    font-size: 16px;
+    
+    textarea {
+      height: 150px;
+      -webkit-appearance: none;
+      resize: none;
+    }
   }
 }
 

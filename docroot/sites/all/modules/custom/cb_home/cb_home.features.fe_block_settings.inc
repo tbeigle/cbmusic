@@ -78,5 +78,38 @@ function cb_home_default_fe_block_settings() {
     'visibility' => 0,
   );
 
+  $export['block-single_banner'] = array(
+    'cache' => -1,
+    'css_class' => 'banner-home single-release',
+    'custom' => 0,
+    'machine_name' => 'single_banner',
+    'module' => 'block',
+    'node_types' => array(),
+    'pages' => '',
+    'roles' => array(),
+    'themes' => array(
+      'bartik' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'bartik',
+        'weight' => 0,
+      ),
+      'cbmusic' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'cbmusic',
+        'weight' => 0,
+      ),
+      'seven' => array(
+        'region' => '',
+        'status' => 0,
+        'theme' => 'seven',
+        'weight' => 0,
+      ),
+    ),
+    'title' => 'The new Single "You Can\'t Take Me" Available on iTunes Now',
+    'visibility' => 0,
+  );
+
   return $export;
 }

@@ -100,8 +100,14 @@ ul.tweets {
   }
 }
 
+.ep-download {
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
 // page elements
 #page-wrapper {
+  position: relative;
   width: 100%;
   max-width: 1020px;
   margin: auto;
@@ -109,13 +115,16 @@ ul.tweets {
   @include vendorize(box-shadow, 0 0 5px 5px rgba(0,0,0,0.4));
   
   &> .inner {
+    padding: 0 0 20px;
     background: #fff;
     
-    &> div,
-    &> header,
-    &> footer {
+    &> div {
       padding: 0 20px;
     }
+  }
+  
+  header {
+    padding: 0;
   }
 }
 
@@ -264,3 +273,62 @@ ul.tweets {
     font-size: 10px;
     color: #fff;
   }
+
+/**
+ * Right sidebar pages
+ */
+.one-sidebar.sidebar-second {
+  #content-wrapper {
+    float: left;
+    width: 68.085%;
+  }
+  
+  #cb-sidebar-second {
+    float: right;
+    width: 31.915%;
+  }
+  
+  .twitter-feed {
+    font-size: 12px;
+    
+    .tweet {
+      overflow: hidden;
+      padding: 10px 3px 5px;
+      border-bottom: 1px solid $colSky;
+    }
+    
+    .tweet-img {
+      float: left;
+      width: 15.335%;
+    }
+    
+    .tweet-message {
+      float: right;
+      width: 84.665%;
+      padding-left: 10px;
+    }
+    
+    .tweet-time-ago {
+      clear: both;
+      text-align: right;
+      font-size: 10px;
+    }
+    
+    .block-title {
+      padding-bottom: 10px;
+      border-bottom: 1px solid $colSky;
+      margin: 0;
+      font-size: 16px;
+      line-height: 1.25;
+      text-align: center;
+      
+      a {
+        display: inline-block;
+        height: auto;
+        min-height: 20px;
+        padding-left: 28px;
+        background: url('../../images/logo-twitter-24x20.png') 0 0 no-repeat;
+      }
+    }
+  }
+}
