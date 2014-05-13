@@ -128,7 +128,7 @@ function cb_core_views_default_views() {
   $view->core = 0;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
-  
+
   /* Display: Tweets */
   $handler = $view->new_display('default', 'Tweets', 'default');
   $handler->display->display_options['use_more_always'] = FALSE;
@@ -192,7 +192,7 @@ function cb_core_views_default_views() {
   $handler->display->display_options['filters']['protected']['value'] = 0;
   $handler->display->display_options['filters']['protected']['group'] = '0';
   $handler->display->display_options['filters']['protected']['expose']['operator'] = FALSE;
-  
+
   /* Display: Block */
   $handler = $view->new_display('block', 'Block', 'block');
   $handler->display->display_options['defaults']['hide_admin_links'] = FALSE;
@@ -233,7 +233,7 @@ function cb_core_views_default_views() {
   $handler->display->display_options['fields']['created_time']['date_format'] = 'time ago';
   $handler->display->display_options['defaults']['arguments'] = FALSE;
   $handler->display->display_options['block_description'] = 'Tweets';
-  
+
   /* Display: Tweets */
   $handler = $view->new_display('page', 'Tweets', 'page_2');
   $handler->display->display_options['defaults']['title'] = FALSE;
@@ -280,7 +280,7 @@ function cb_core_views_default_views() {
   $handler->display->display_options['arguments']['screen_name']['summary_options']['items_per_page'] = '25';
   $handler->display->display_options['arguments']['screen_name']['limit'] = '0';
   $handler->display->display_options['path'] = 'tweets';
-  
+
   /* Display: Content pane */
   $handler = $view->new_display('panel_pane', 'Content pane', 'pane_home');
   $handler->display->display_options['defaults']['pager'] = FALSE;
@@ -370,6 +370,7 @@ function cb_core_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
+  $handler->display->display_options['css_class'] = 'jplayer-view';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['access']['type'] = 'perm';
   $handler->display->display_options['cache']['type'] = 'none';
@@ -410,8 +411,8 @@ function cb_core_views_default_views() {
     'audio' => 'audio',
   );
 
-  /* Display: Block: jPlayer */
-  $handler = $view->new_display('block', 'Block: jPlayer', 'block_jplayer');
+  /* Display: Block: You Can't Take Me */
+  $handler = $view->new_display('block', 'Block: You Can\'t Take Me', 'block_jplayer');
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
   /* Filter criterion: File: Type */
@@ -421,15 +422,42 @@ function cb_core_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'audio' => 'audio',
   );
-  /* Filter criterion: File: File ID */
-  $handler->display->display_options['filters']['fid']['id'] = 'fid';
-  $handler->display->display_options['filters']['fid']['table'] = 'file_managed';
-  $handler->display->display_options['filters']['fid']['field'] = 'fid';
-  $handler->display->display_options['filters']['fid']['value']['value'] = '18';
+  $handler->display->display_options['filters']['type']['group'] = 1;
+  /* Filter criterion: File: Feature on Home Page (field_file_feature_home) */
+  $handler->display->display_options['filters']['field_file_feature_home_value']['id'] = 'field_file_feature_home_value';
+  $handler->display->display_options['filters']['field_file_feature_home_value']['table'] = 'field_data_field_file_feature_home';
+  $handler->display->display_options['filters']['field_file_feature_home_value']['field'] = 'field_file_feature_home_value';
+  $handler->display->display_options['filters']['field_file_feature_home_value']['value'] = array(
+    1 => '1',
+  );
 
-  /* Display: Page: EP Streaming */
-  $handler = $view->new_display('page', 'Page: EP Streaming', 'page_ep_stream');
-  $handler->display->display_options['path'] = 'ep-streaming';
+  /* Display: Page: EP Streaming - 2014-05 */
+  $handler = $view->new_display('page', 'Page: EP Streaming - 2014-05', 'page_ep_stream');
+  $handler->display->display_options['defaults']['header'] = FALSE;
+  /* Header: Global: Text area */
+  $handler->display->display_options['header']['area']['id'] = 'area';
+  $handler->display->display_options['header']['area']['table'] = 'views';
+  $handler->display->display_options['header']['area']['field'] = 'area';
+  $handler->display->display_options['header']['area']['label'] = 'Download Link';
+  $handler->display->display_options['header']['area']['content'] = '<a class="ep-download" href="/press-download/30">Click here to download the EP as a ZIP file.</a>';
+  $handler->display->display_options['header']['area']['format'] = 'filtered_html';
+  $handler->display->display_options['defaults']['filter_groups'] = FALSE;
+  $handler->display->display_options['defaults']['filters'] = FALSE;
+  /* Filter criterion: File: Type */
+  $handler->display->display_options['filters']['type']['id'] = 'type';
+  $handler->display->display_options['filters']['type']['table'] = 'file_managed';
+  $handler->display->display_options['filters']['type']['field'] = 'type';
+  $handler->display->display_options['filters']['type']['value'] = array(
+    'audio' => 'audio',
+  );
+  /* Filter criterion: File: Album (field_file_album) */
+  $handler->display->display_options['filters']['field_file_album_value']['id'] = 'field_file_album_value';
+  $handler->display->display_options['filters']['field_file_album_value']['table'] = 'field_data_field_file_album';
+  $handler->display->display_options['filters']['field_file_album_value']['field'] = 'field_file_album_value';
+  $handler->display->display_options['filters']['field_file_album_value']['value'] = array(
+    'ep_201405' => 'ep_201405',
+  );
+  $handler->display->display_options['path'] = 'special/ep-201405';
   $export['songs'] = $view;
 
   return $export;
