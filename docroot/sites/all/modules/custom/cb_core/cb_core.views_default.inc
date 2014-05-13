@@ -457,7 +457,7 @@ function cb_core_views_default_views() {
   $handler->display->display_options['filters']['field_file_album_value']['value'] = array(
     'ep_201405' => 'ep_201405',
   );
-  $handler->display->display_options['path'] = 'special/ep-201405';
+  $handler->display->display_options['path'] = 'prexclusive';
   $export['songs'] = $view;
 
   return $export;
