@@ -439,7 +439,7 @@ function cb_core_views_default_views() {
   $handler->display->display_options['header']['area']['table'] = 'views';
   $handler->display->display_options['header']['area']['field'] = 'area';
   $handler->display->display_options['header']['area']['label'] = 'Download Link';
-  $handler->display->display_options['header']['area']['content'] = '<a class="ep-download" href="/press-download/30">Click here to download the EP as a ZIP file.</a>';
+  $handler->display->display_options['header']['area']['content'] = '<a class="ep-download" href="/press-download/24">Click here to download the EP as a ZIP file.</a>';
   $handler->display->display_options['header']['area']['format'] = 'filtered_html';
   $handler->display->display_options['defaults']['filter_groups'] = FALSE;
   $handler->display->display_options['defaults']['filters'] = FALSE;
