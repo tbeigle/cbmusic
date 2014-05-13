@@ -87,6 +87,10 @@ ul.tweets {
     float: right;
     width: 240px; }
 
+.ep-download {
+  display: inline-block;
+  margin-bottom: 20px; }
+
 #page-wrapper {
   position: relative;
   width: 100%;

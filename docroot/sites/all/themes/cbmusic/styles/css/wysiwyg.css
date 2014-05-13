@@ -87,6 +87,10 @@ ul.tweets {
     float: right;
     width: 240px; }
 
+.ep-download {
+  display: inline-block;
+  margin-bottom: 20px; }
+
 #page-wrapper {
   position: relative;
   width: 100%;
@@ -249,16 +253,17 @@ ul.tweets {
       padding-left: 28px;
       background: url("../../images/logo-twitter-24x20.png") 0 0 no-repeat; }
 
+.jplayer-view a {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none; }
+
 .cb-jplayer {
   float: left;
   width: 504px;
   padding-top: 5px; }
-  .cb-jplayer a {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -ms-transition: none;
-    -o-transition: none;
-    transition: none; }
   .cb-jplayer .jp-audio {
     width: 100%;
     overflow: hidden; }
@@ -336,7 +341,8 @@ ul.tweets {
 
 label {
   font-size: 12px;
-  text-transform: uppercase; }
+  text-transform: uppercase;
+  color: #2d4e5f; }
 
 .form-actions {
   text-align: center; }
@@ -360,7 +366,8 @@ label {
     .form-actions .form-submit:hover, .form-actions .form-submit:active, .form-actions .form-submit:focus {
       color: #0d1520; }
 
-.cb-contact-form h2 {
+.cb-contact-form h2,
+.page-node-53 h2 {
   font-family: vincentregular, Arial, Helvetica, sans-serif;
   padding: 5px;
   background: url("../../images/cb-header-textured-bg.jpg") 0 0 repeat;
@@ -368,24 +375,59 @@ label {
   text-align: center;
   color: #fff; }
 .cb-contact-form .form-item,
-.cb-contact-form .form-actions {
+.cb-contact-form .form-actions,
+.page-node-53 .form-item,
+.page-node-53 .form-actions {
   margin: 10px 0 0;
   overflow: hidden; }
-.cb-contact-form .webform-container-inline label {
-  float: left;
-  width: 16%;
-  padding: 10px 20px 0 0;
-  margin-right: 0; }
-.cb-contact-form .webform-container-inline input[type="text"],
-.cb-contact-form .webform-container-inline input[type="email"] {
-  float: right;
-  width: 84%;
-  padding: 5px;
+.cb-contact-form .webform-container-inline,
+.cb-contact-form .webform-component-textarea,
+.page-node-53 .webform-container-inline,
+.page-node-53 .webform-component-textarea {
+  /*label {
+    float: left;
+    width: 16%;
+    padding: 10px 20px 0 0;
+    margin-right: 0;
+  }*/
   font-size: 16px;
-  border: 1px solid #d3dce5; }
-.cb-contact-form textarea {
-  border: 1px solid #d3dce5;
-  font-size: 16px; }
+  line-height: 1.25; }
+  .cb-contact-form .webform-container-inline label,
+  .cb-contact-form .webform-component-textarea label,
+  .page-node-53 .webform-container-inline label,
+  .page-node-53 .webform-component-textarea label {
+    display: block;
+    margin: 0; }
+    .cb-contact-form .webform-container-inline label.compact-form-label,
+    .cb-contact-form .webform-component-textarea label.compact-form-label,
+    .page-node-53 .webform-container-inline label.compact-form-label,
+    .page-node-53 .webform-component-textarea label.compact-form-label {
+      left: 10px;
+      top: 9px; }
+  .cb-contact-form .webform-container-inline input[type="text"],
+  .cb-contact-form .webform-container-inline input[type="email"],
+  .cb-contact-form .webform-container-inline textarea,
+  .cb-contact-form .webform-component-textarea input[type="text"],
+  .cb-contact-form .webform-component-textarea input[type="email"],
+  .cb-contact-form .webform-component-textarea textarea,
+  .page-node-53 .webform-container-inline input[type="text"],
+  .page-node-53 .webform-container-inline input[type="email"],
+  .page-node-53 .webform-container-inline textarea,
+  .page-node-53 .webform-component-textarea input[type="text"],
+  .page-node-53 .webform-component-textarea input[type="email"],
+  .page-node-53 .webform-component-textarea textarea {
+    display: block;
+    width: 100%;
+    padding: 5px 10px;
+    font-size: 16px;
+    border: 1px solid #d3dce5; }
+  .cb-contact-form .webform-container-inline textarea,
+  .cb-contact-form .webform-component-textarea textarea,
+  .page-node-53 .webform-container-inline textarea,
+  .page-node-53 .webform-component-textarea textarea {
+    height: 150px;
+    -webkit-appearance: none;
+    resize: none; }
 
 .request-tour-date-form h2 {
   font-size: 14px; }
