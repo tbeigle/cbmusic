@@ -76,13 +76,6 @@
     .block.banner-home.new-ep-link:hover .ep-title a:link .itunes, .block.banner-home.new-ep-link:hover .ep-title a:visited .itunes, .block.banner-home.new-ep-link:hover .ep-title a:hover .itunes, .block.banner-home.new-ep-link:hover .ep-title a:active .itunes, .block.banner-home.new-ep-link:hover .ep-title a:focus .itunes {
       color: #4d4227; }
 
-.cb-homepage #page-wrapper {
-  position: relative;
-  margin: auto; }
-  .cb-homepage #page-wrapper > .inner {
-    background: #fff; }
-  .cb-homepage #page-wrapper header {
-    padding: 0; }
 .cb-homepage .cb-header-text {
   position: absolute;
   right: 30px;

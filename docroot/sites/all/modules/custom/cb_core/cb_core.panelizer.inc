@@ -30,13 +30,14 @@ function cb_core_panelizer_defaults() {
   $panelizer->link_to_entity = TRUE;
   $panelizer->extra = array();
   $display = new panels_display();
-  $display->layout = 'boxton';
+  $display->layout = 'burr_flipped';
   $display->layout_settings = array();
   $display->panel_settings = array(
     'style_settings' => array(
       'default' => NULL,
       'center' => NULL,
       'contentmain' => NULL,
+      'sidebar' => NULL,
     ),
   );
   $display->cache = array();
@@ -45,6 +46,98 @@ function cb_core_panelizer_defaults() {
   $display->panels = array();
     $pane = new stdClass();
     $pane->pid = 'new-1';
+    $pane->panel = 'contentmain';
+    $pane->type = 'fieldable_panels_pane';
+    $pane->subtype = 'fpid:10';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'view_mode' => 'full',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'you-cant-take-me-lyric-video',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-1'] = $pane;
+    $display->panels['contentmain'][0] = 'new-1';
+    $pane = new stdClass();
+    $pane->pid = 'new-2';
+    $pane->panel = 'contentmain';
+    $pane->type = 'block';
+    $pane->subtype = 'songkick-artist_calendar_4964903';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'cb-home-tour-dates',
+      'css_class' => '',
+    );
+    $pane->extras = array();
+    $pane->position = 1;
+    $pane->locks = array();
+    $display->content['new-2'] = $pane;
+    $display->panels['contentmain'][1] = 'new-2';
+    $pane = new stdClass();
+    $pane->pid = 'new-3';
+    $pane->panel = 'contentmain';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'cb_instagram-pane_1';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'cb-home-photos',
+      'css_class' => 'home-instagram-feed',
+    );
+    $pane->extras = array();
+    $pane->position = 2;
+    $pane->locks = array();
+    $display->content['new-3'] = $pane;
+    $display->panels['contentmain'][2] = 'new-3';
+    $pane = new stdClass();
+    $pane->pid = 'new-4';
+    $pane->panel = 'contentmain';
+    $pane->type = 'block';
+    $pane->subtype = 'webform-client-block-53';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => 'cb-home-contact-form',
+      'css_class' => 'cb-contact-form',
+    );
+    $pane->extras = array();
+    $pane->position = 3;
+    $pane->locks = array();
+    $display->content['new-4'] = $pane;
+    $display->panels['contentmain'][3] = 'new-4';
+    $pane = new stdClass();
+    $pane->pid = 'new-5';
     $pane->panel = 'contentmain';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_page_body';
@@ -80,12 +173,12 @@ function cb_core_panelizer_defaults() {
     );
     $pane->css = array();
     $pane->extras = array();
-    $pane->position = 0;
+    $pane->position = 4;
     $pane->locks = array();
-    $display->content['new-1'] = $pane;
-    $display->panels['contentmain'][0] = 'new-1';
+    $display->content['new-5'] = $pane;
+    $display->panels['contentmain'][4] = 'new-5';
     $pane = new stdClass();
-    $pane->pid = 'new-2';
+    $pane->pid = 'new-6';
     $pane->panel = 'contentmain';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -107,10 +200,55 @@ function cb_core_panelizer_defaults() {
       'css_class' => 'link-wrapper',
     );
     $pane->extras = array();
+    $pane->position = 5;
+    $pane->locks = array();
+    $display->content['new-6'] = $pane;
+    $display->panels['contentmain'][5] = 'new-6';
+    $pane = new stdClass();
+    $pane->pid = 'new-7';
+    $pane->panel = 'sidebar';
+    $pane->type = 'block';
+    $pane->subtype = 'webform-client-block-54';
+    $pane->shown = FALSE;
+    $pane->access = array();
+    $pane->configuration = array(
+      'override_title' => 0,
+      'override_title_text' => '',
+    );
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'request-tour-date-form',
+    );
+    $pane->extras = array();
+    $pane->position = 0;
+    $pane->locks = array();
+    $display->content['new-7'] = $pane;
+    $display->panels['sidebar'][0] = 'new-7';
+    $pane = new stdClass();
+    $pane->pid = 'new-8';
+    $pane->panel = 'sidebar';
+    $pane->type = 'views_panes';
+    $pane->subtype = 'cb_tweets-pane_home';
+    $pane->shown = TRUE;
+    $pane->access = array();
+    $pane->configuration = array();
+    $pane->cache = array();
+    $pane->style = array(
+      'settings' => NULL,
+    );
+    $pane->css = array(
+      'css_id' => '',
+      'css_class' => 'home-twitter-feed',
+    );
+    $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-2'] = $pane;
-    $display->panels['contentmain'][1] = 'new-2';
+    $display->content['new-8'] = $pane;
+    $display->panels['sidebar'][1] = 'new-8';
   $display->hide_title = PANELS_TITLE_NONE;
   $display->title_pane = '0';
   $panelizer->display = $display;
@@ -144,7 +282,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-3';
+    $pane->pid = 'new-9';
     $pane->panel = 'contentmain';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
@@ -165,10 +303,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-3'] = $pane;
-    $display->panels['contentmain'][0] = 'new-3';
+    $display->content['new-9'] = $pane;
+    $display->panels['contentmain'][0] = 'new-9';
     $pane = new stdClass();
-    $pane->pid = 'new-4';
+    $pane->pid = 'new-10';
     $pane->panel = 'contentmain';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -190,10 +328,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 1;
     $pane->locks = array();
-    $display->content['new-4'] = $pane;
-    $display->panels['contentmain'][1] = 'new-4';
+    $display->content['new-10'] = $pane;
+    $display->panels['contentmain'][1] = 'new-10';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-3';
+  $display->title_pane = 'new-9';
   $panelizer->display = $display;
   $export['node:page:default:default'] = $panelizer;
 
@@ -225,7 +363,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-5';
+    $pane->pid = 'new-11';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_page_body';
@@ -246,10 +384,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-5'] = $pane;
-    $display->panels['center'][0] = 'new-5';
+    $display->content['new-11'] = $pane;
+    $display->panels['center'][0] = 'new-11';
     $pane = new stdClass();
-    $pane->pid = 'new-6';
+    $pane->pid = 'new-12';
     $pane->panel = 'center';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -271,10 +409,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-6'] = $pane;
-    $display->panels['center'][1] = 'new-6';
+    $display->content['new-12'] = $pane;
+    $display->panels['center'][1] = 'new-12';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-6';
+  $display->title_pane = 'new-12';
   $panelizer->display = $display;
   $export['node:page:default:full'] = $panelizer;
 
@@ -306,7 +444,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-7';
+    $pane->pid = 'new-13';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_image';
@@ -330,10 +468,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-7'] = $pane;
-    $display->panels['center'][0] = 'new-7';
+    $display->content['new-13'] = $pane;
+    $display->panels['center'][0] = 'new-13';
     $pane = new stdClass();
-    $pane->pid = 'new-8';
+    $pane->pid = 'new-14';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
@@ -354,10 +492,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-8'] = $pane;
-    $display->panels['center'][1] = 'new-8';
+    $display->content['new-14'] = $pane;
+    $display->panels['center'][1] = 'new-14';
     $pane = new stdClass();
-    $pane->pid = 'new-9';
+    $pane->pid = 'new-15';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_status';
@@ -378,10 +516,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-9'] = $pane;
-    $display->panels['center'][2] = 'new-9';
+    $display->content['new-15'] = $pane;
+    $display->panels['center'][2] = 'new-15';
     $pane = new stdClass();
-    $pane->pid = 'new-10';
+    $pane->pid = 'new-16';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_categories';
@@ -402,10 +540,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-10'] = $pane;
-    $display->panels['center'][3] = 'new-10';
+    $display->content['new-16'] = $pane;
+    $display->panels['center'][3] = 'new-16';
     $pane = new stdClass();
-    $pane->pid = 'new-11';
+    $pane->pid = 'new-17';
     $pane->panel = 'center';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -427,10 +565,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-11'] = $pane;
-    $display->panels['center'][4] = 'new-11';
+    $display->content['new-17'] = $pane;
+    $display->panels['center'][4] = 'new-17';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-11';
+  $display->title_pane = 'new-17';
   $panelizer->display = $display;
   $export['node:panopoly_page:default'] = $panelizer;
 
@@ -462,7 +600,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-12';
+    $pane->pid = 'new-18';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_image';
@@ -486,10 +624,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-12'] = $pane;
-    $display->panels['center'][0] = 'new-12';
+    $display->content['new-18'] = $pane;
+    $display->panels['center'][0] = 'new-18';
     $pane = new stdClass();
-    $pane->pid = 'new-13';
+    $pane->pid = 'new-19';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
@@ -510,10 +648,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-13'] = $pane;
-    $display->panels['center'][1] = 'new-13';
+    $display->content['new-19'] = $pane;
+    $display->panels['center'][1] = 'new-19';
     $pane = new stdClass();
-    $pane->pid = 'new-14';
+    $pane->pid = 'new-20';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_status';
@@ -534,10 +672,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-14'] = $pane;
-    $display->panels['center'][2] = 'new-14';
+    $display->content['new-20'] = $pane;
+    $display->panels['center'][2] = 'new-20';
     $pane = new stdClass();
-    $pane->pid = 'new-15';
+    $pane->pid = 'new-21';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_categories';
@@ -558,10 +696,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-15'] = $pane;
-    $display->panels['center'][3] = 'new-15';
+    $display->content['new-21'] = $pane;
+    $display->panels['center'][3] = 'new-21';
     $pane = new stdClass();
-    $pane->pid = 'new-16';
+    $pane->pid = 'new-22';
     $pane->panel = 'center';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -583,10 +721,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-16'] = $pane;
-    $display->panels['center'][4] = 'new-16';
+    $display->content['new-22'] = $pane;
+    $display->panels['center'][4] = 'new-22';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-16';
+  $display->title_pane = 'new-22';
   $panelizer->display = $display;
   $export['node:panopoly_page:default:default'] = $panelizer;
 
@@ -618,7 +756,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-17';
+    $pane->pid = 'new-23';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_status';
@@ -639,10 +777,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-17'] = $pane;
-    $display->panels['center'][0] = 'new-17';
+    $display->content['new-23'] = $pane;
+    $display->panels['center'][0] = 'new-23';
     $pane = new stdClass();
-    $pane->pid = 'new-18';
+    $pane->pid = 'new-24';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_image';
@@ -666,10 +804,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-18'] = $pane;
-    $display->panels['center'][1] = 'new-18';
+    $display->content['new-24'] = $pane;
+    $display->panels['center'][1] = 'new-24';
     $pane = new stdClass();
-    $pane->pid = 'new-19';
+    $pane->pid = 'new-25';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_categories';
@@ -690,10 +828,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-19'] = $pane;
-    $display->panels['center'][2] = 'new-19';
+    $display->content['new-25'] = $pane;
+    $display->panels['center'][2] = 'new-25';
     $pane = new stdClass();
-    $pane->pid = 'new-20';
+    $pane->pid = 'new-26';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
@@ -716,10 +854,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-20'] = $pane;
-    $display->panels['center'][3] = 'new-20';
+    $display->content['new-26'] = $pane;
+    $display->panels['center'][3] = 'new-26';
     $pane = new stdClass();
-    $pane->pid = 'new-21';
+    $pane->pid = 'new-27';
     $pane->panel = 'center';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -741,10 +879,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-21'] = $pane;
-    $display->panels['center'][4] = 'new-21';
+    $display->content['new-27'] = $pane;
+    $display->panels['center'][4] = 'new-27';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-21';
+  $display->title_pane = 'new-27';
   $panelizer->display = $display;
   $export['node:panopoly_page:default:featured'] = $panelizer;
 
@@ -776,7 +914,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-22';
+    $pane->pid = 'new-28';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_status';
@@ -797,10 +935,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-22'] = $pane;
-    $display->panels['center'][0] = 'new-22';
+    $display->content['new-28'] = $pane;
+    $display->panels['center'][0] = 'new-28';
     $pane = new stdClass();
-    $pane->pid = 'new-23';
+    $pane->pid = 'new-29';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_image';
@@ -824,10 +962,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-23'] = $pane;
-    $display->panels['center'][1] = 'new-23';
+    $display->content['new-29'] = $pane;
+    $display->panels['center'][1] = 'new-29';
     $pane = new stdClass();
-    $pane->pid = 'new-24';
+    $pane->pid = 'new-30';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:field_featured_categories';
@@ -848,10 +986,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-24'] = $pane;
-    $display->panels['center'][2] = 'new-24';
+    $display->content['new-30'] = $pane;
+    $display->panels['center'][2] = 'new-30';
     $pane = new stdClass();
-    $pane->pid = 'new-25';
+    $pane->pid = 'new-31';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'node:body';
@@ -874,10 +1012,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-25'] = $pane;
-    $display->panels['center'][3] = 'new-25';
+    $display->content['new-31'] = $pane;
+    $display->panels['center'][3] = 'new-31';
     $pane = new stdClass();
-    $pane->pid = 'new-26';
+    $pane->pid = 'new-32';
     $pane->panel = 'center';
     $pane->type = 'node_links';
     $pane->subtype = 'node_links';
@@ -899,10 +1037,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-26'] = $pane;
-    $display->panels['center'][4] = 'new-26';
+    $display->content['new-32'] = $pane;
+    $display->panels['center'][4] = 'new-32';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-26';
+  $display->title_pane = 'new-32';
   $panelizer->display = $display;
   $export['node:panopoly_page:default:teaser'] = $panelizer;
 
@@ -934,7 +1072,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-27';
+    $pane->pid = 'new-33';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_about';
@@ -955,10 +1093,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-27'] = $pane;
-    $display->panels['center'][0] = 'new-27';
+    $display->content['new-33'] = $pane;
+    $display->panels['center'][0] = 'new-33';
     $pane = new stdClass();
-    $pane->pid = 'new-28';
+    $pane->pid = 'new-34';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_picture';
@@ -982,10 +1120,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-28'] = $pane;
-    $display->panels['center'][1] = 'new-28';
+    $display->content['new-34'] = $pane;
+    $display->panels['center'][1] = 'new-34';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-28';
+  $display->title_pane = 'new-34';
   $panelizer->display = $display;
   $export['user:user:default'] = $panelizer;
 
@@ -1017,7 +1155,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-29';
+    $pane->pid = 'new-35';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_about';
@@ -1038,10 +1176,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-29'] = $pane;
-    $display->panels['center'][0] = 'new-29';
+    $display->content['new-35'] = $pane;
+    $display->panels['center'][0] = 'new-35';
     $pane = new stdClass();
-    $pane->pid = 'new-30';
+    $pane->pid = 'new-36';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_picture';
@@ -1065,10 +1203,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-30'] = $pane;
-    $display->panels['center'][1] = 'new-30';
+    $display->content['new-36'] = $pane;
+    $display->panels['center'][1] = 'new-36';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-30';
+  $display->title_pane = 'new-36';
   $panelizer->display = $display;
   $export['user:user:default:default'] = $panelizer;
 
@@ -1100,7 +1238,7 @@ function cb_core_panelizer_defaults() {
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-31';
+    $pane->pid = 'new-37';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_picture';
@@ -1121,10 +1259,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-31'] = $pane;
-    $display->panels['center'][0] = 'new-31';
+    $display->content['new-37'] = $pane;
+    $display->panels['center'][0] = 'new-37';
     $pane = new stdClass();
-    $pane->pid = 'new-32';
+    $pane->pid = 'new-38';
     $pane->panel = 'center';
     $pane->type = 'entity_field';
     $pane->subtype = 'user:field_user_about';
@@ -1145,10 +1283,10 @@ function cb_core_panelizer_defaults() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-32'] = $pane;
-    $display->panels['center'][1] = 'new-32';
+    $display->content['new-38'] = $pane;
+    $display->panels['center'][1] = 'new-38';
   $display->hide_title = PANELS_TITLE_FIXED;
-  $display->title_pane = 'new-32';
+  $display->title_pane = 'new-38';
   $panelizer->display = $display;
   $export['user:user:default:featured'] = $panelizer;
 

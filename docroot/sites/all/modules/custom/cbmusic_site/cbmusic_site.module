@@ -3,20 +3,78 @@
  * @file
  * Module file for the custom CB Music module
  */
+
 /**
- * Implements hook_menu
+ * Implements hook_menu().
  */
-/*function cbmusic_site_menu() {
-  $items = array();
-  
-  $items['coming-soon'] = array(
-    'title' => 'New Website Coming Soon',
-    'description' => 'New website and EP coming soon landing page',
+function cbmusic_site_menu() {
+  $items['press-download/%file'] = array(
+    'title' => t('EP Download'),
+    'page callback' => 'cbmusic_site_ep_download',
+    'page arguments' => array(1),
     'access callback' => TRUE,
-    'page callback' => 'cbmusic_site_page_coming_soon',
-    'file' => 'includes/cbmusic_site.page.coming_soon.inc',
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_CALLBACK,
   );
   
   return $items;
-}*/
+}
+
+/**
+ * Callback for downloading the zipped EP
+ */
+function cbmusic_site_ep_download($file) {
+  $headers = array(
+    'Content-Type' => 'force-download',
+    'Content-Disposition' => 'attachment; filename="' . $file->filename . '"',
+    'Content-Length' => $file->filesize,
+    'Content-Transfer-Encoding' => 'binary',
+    'Pragma' => 'no-cache',
+    'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+    'Expires' => '0',
+    'Accept-Ranges' => 'bytes',
+  );
+
+  // Let other modules alter the download headers.
+  drupal_alter('file_download_headers', $headers);
+
+  file_transfer($file->uri, $headers);
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ *
+ * Alters the contact Webform to add validation to the email field
+ * when it's of type textfield to more smoothly integrate with
+ * compact forms.
+ */
+function cbmusic_site_form_webform_client_form_53_alter(&$form, &$form_state) {
+  if (!empty($form['submitted']['email'])) {
+    if ($form['submitted']['email']['#type'] == 'textfield') {
+      $form['submitted']['email']['#element_validate'][] = '_cbmusic_site_validate_email';
+    }
+  }
+}
+
+/**
+ * A Drupal Form API Validation function. Validates the entered values from
+ * email components on the client-side form.
+ *
+ * @param $element
+ *   The e-mail form element.
+ * @param $form_state
+ *   The full form state for the webform.
+ * @param $form
+ *   The full form array
+ * @return
+ *   None. Calls a form_set_error if the e-mail is not valid.
+ */
+function _cbmusic_site_validate_email($element, &$form_state, $form) {
+  $component = $element['#webform_component'];
+  $value = trim($element['#value']);
+  if ($value !== '' && !valid_email_address($value)) {
+    form_error($element, t('%value is not a valid email address.', array('%value' => $value)));
+  }
+  else {
+    form_set_value($element, $value, $form_state);
+  }
+}

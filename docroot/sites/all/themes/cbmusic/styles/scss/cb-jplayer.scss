@@ -1,13 +1,15 @@
 @import "mixins";
 
+.jplayer-view {
+  a {
+    @include vendorize(transition, none);
+  }
+}
+
 .cb-jplayer {
   float: left;
   width: 504px;
   padding-top: 5px;
-  
-  a {
-    @include vendorize(transition, none);
-  }
   
   .jp-audio {
     width: 100%;

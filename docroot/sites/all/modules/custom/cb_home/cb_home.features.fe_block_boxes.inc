@@ -27,10 +27,20 @@ function cb_home_default_fe_block_boxes() {
   $fe_block_boxes->format = 'filtered_html';
   $fe_block_boxes->machine_name = 'pre_ep_banner';
   $fe_block_boxes->body = '<div class="image-wrapper">
-	<img alt="Cory Bishop" src="/sites/default/files/pre-ep-banner.jpg" style="width: 1020px; height: 590px;" /></div>
+	<img alt="Cory Bishop" src="/sites/default/files/pre-ep-banner.jpg" /></div>
 ';
 
   $export['pre_ep_banner'] = $fe_block_boxes;
+
+  $fe_block_boxes = new stdClass();
+  $fe_block_boxes->info = 'Banner - Home: Single Link';
+  $fe_block_boxes->format = 'full_html';
+  $fe_block_boxes->machine_name = 'single_banner';
+  $fe_block_boxes->body = '<div class="image-wrapper">
+	<a href="http://tinyurl.com/klk286f" title="New single on iTunes!"><img alt="You Can\'t Take Me - cover of the single" src="/sites/default/files/cover-single-you-cant-take-me-1080x1080.jpg" /></a></div>
+';
+
+  $export['single_banner'] = $fe_block_boxes;
 
   return $export;
 }

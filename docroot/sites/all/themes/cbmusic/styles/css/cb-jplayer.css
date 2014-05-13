@@ -1,13 +1,14 @@
+.jplayer-view a {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -ms-transition: none;
+  -o-transition: none;
+  transition: none; }
+
 .cb-jplayer {
   float: left;
   width: 504px;
   padding-top: 5px; }
-  .cb-jplayer a {
-    -webkit-transition: none;
-    -moz-transition: none;
-    -ms-transition: none;
-    -o-transition: none;
-    transition: none; }
   .cb-jplayer .jp-audio {
     width: 100%;
     overflow: hidden; }
