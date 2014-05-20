@@ -145,7 +145,7 @@ class FeedsJSONPathParser extends FeedsParser {
     foreach ($mappings_ as $mapping) {
       if (strpos($mapping['source'], 'jsonpath_parser:') === 0) {
         $mappings[$mapping['source']] = $mapping['target'];
-        if ($mapping['unique']) {
+        if (array_key_exists('unique', $mapping)) {
           $uniques[] = $mapping['target'];
         }
       }
