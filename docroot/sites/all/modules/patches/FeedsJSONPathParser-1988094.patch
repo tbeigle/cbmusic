@@ -1,0 +1,13 @@
+diff --git a/FeedsJSONPathParser.inc b/FeedsJSONPathParser.inc
+index 37004ba..3db4bf7 100644
+--- a/FeedsJSONPathParser.inc
++++ b/FeedsJSONPathParser.inc
+@@ -158,7 +158,7 @@ class FeedsJSONPathParser extends FeedsParser {
+     foreach ($mappings_ as $mapping) {
+       if (strpos($mapping['source'], 'jsonpath_parser:') === 0) {
+         $mappings[$mapping['source']] = $mapping['target'];
+-        if ($mapping['unique']) {
++        if (array_key_exists('unique', $mapping)) {
+           $uniques[] = $mapping['target'];
+         }
+       }
