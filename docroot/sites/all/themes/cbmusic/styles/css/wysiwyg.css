@@ -829,7 +829,10 @@ label {
   .block.banner-home.single-release .image-wrapper {
     float: none;
     width: 100%;
-    margin: auto; } }
+    margin: auto; }
+
+  .nav-region .nav .content ul {
+    font-size: 16px; } }
 html {
   width: 100%;
   background: url("../../images/cb-textured-bg.jpg") 0 0 repeat;
