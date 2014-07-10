@@ -140,6 +140,12 @@
       </div> <!-- /#cb-messages-wrapper /.clearfix -->
     <?php endif; ?>
     
+    <?php if ($page['message']): ?>
+      <div id="cb-message-region">
+        <?php print render($page['message']); ?>
+      </div> <!-- /#cb-message-region -->
+    <?php endif; ?>
+    
     <div id="main-wrapper" class="row clearfix">
       <?php if ($tabs || !empty($page['help'])): ?>
         <div id="cb-tabs-and-help" class="row clearfix">
