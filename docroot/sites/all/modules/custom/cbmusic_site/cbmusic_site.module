@@ -20,6 +20,130 @@ function cbmusic_site_menu() {
 }
 
 /**
+ * Implements hook_block_info()
+ */
+function cbmusic_site_block_info() {
+  $items['buynow_0001'] = array(
+    'info' => variable_get('cbmusic_site_buynow_0001_info', 'PayPal Buy Now: 8/1/2014, Coach House'),
+  );
+  
+  return $items;
+}
+
+/**
+ * Implements hook_block_configure()
+ */
+function cbmusic_site_block_configure($delta = '') {
+  $form = array();
+  
+  // Build the default settings array
+  $settings = _cbmusic_site_block_content($delta);
+  
+  switch ($delta) {
+    // Buy Now 0001
+    case 'buynow_0001': {
+      // Info
+      $form['info'] = array(
+        '#type' => 'textfield',
+        '#title' => t('Block Admin description'),
+        '#required' => TRUE,
+        '#default_value' => variable_get('cbmusic_site_buynow_0001_info', 'PayPal Buy Now: 8/1/2014, Coach House'),
+      );
+      
+      // Description and embed code
+      foreach (array('desc' => 'Event Description', 'embed_code' => 'Embed Code') as $key => $title) {
+        $form[$key] = array(
+          '#type' => $key == 'desc' ? 'text_format' : 'textarea',
+          '#title' => $title,
+          '#required' => TRUE,
+          '#default_value' => $settings[$key],
+        );
+      }
+      
+      break;
+    }
+  }
+  
+  return $form;
+}
+
+/**
+ * Implements hook_block_save()
+ */
+function cbmusic_site_block_save($delta = '', $edit = array()) {
+  switch ($delta) {
+    case 'buynow_0001': {
+      // Block Admin Description
+      variable_set('cbmusic_site_buynow_0001_info', $edit['info']);
+      
+      // Update block copy and embed code
+      $settings = array(
+        'desc' => $edit['desc']['value'],
+        'embed_code' => $edit['embed_code'],
+      );
+      
+      variable_set('cbmusic_site_buynow_0001_settings', $settings);
+    }
+  }
+}
+
+/**
+ * Implements hook_block_view()
+ */
+function cbmusic_site_block_view($delta = '') {
+  $block = array();
+  // Get the block settings
+  $settings = _cbmusic_site_block_content($delta);
+  
+  switch ($delta) {
+    case 'buynow_0001': {
+      $block['subject'] = 'Tickets for Coach House Show, Aug. 1, 2014';
+      
+      $block['content'] = array(
+        'desc' => array(
+          '#markup' => $settings['desc'],
+        ),
+        'embed_code' => array(
+          '#markup' => $settings['embed_code'],
+        ),
+      );
+      break;
+    }
+  }
+  
+  return $block;
+}
+
+/**
+ * Helper function for retrieving default settings for blocks
+ */
+function _cbmusic_site_block_content($delta = '') {
+  $output = array();
+  
+  switch ($delta) {
+    case 'buynow_0001': {
+      $defaults = array(
+        'desc' => 'Click the button below to purchase tickets to see Cory Bishop play at the Coach House in San Juan Capistrano, CA, on Aug. 1, 2014 at 7:00 PM. Tickets cost $15 each and will be available for pickup at the venue just before the show.',
+        'embed_code' =>
+          '<form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top">' . "\n\t" .
+            '<input type="hidden" name="cmd" value="_s-xclick">' . "\n\t" .
+            '<input type="hidden" name="hosted_button_id" value="Z7GD8SMWDMP8A">' . "\n\t" .
+            '<input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">' . "\n\t" .
+            '<img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">' . "\n" .
+          '</form>',
+      );
+      
+      // Get the current settings
+      $output = variable_get('cbmusic_site_buynow_0001_settings', $defaults);
+      
+      break;
+    }
+  }
+  
+  return $output;
+}
+
+/**
  * Callback for downloading the zipped EP
  */
 function cbmusic_site_ep_download($file) {
