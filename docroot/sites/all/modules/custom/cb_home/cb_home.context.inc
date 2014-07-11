@@ -44,6 +44,12 @@ function cb_home_context_default_contexts() {
           'region' => 'header',
           'weight' => '-8',
         ),
+        'cbmusic_site-buynow_0001' => array(
+          'module' => 'cbmusic_site',
+          'delta' => 'buynow_0001',
+          'region' => 'message',
+          'weight' => '-10',
+        ),
       ),
     ),
     'theme_html' => array(

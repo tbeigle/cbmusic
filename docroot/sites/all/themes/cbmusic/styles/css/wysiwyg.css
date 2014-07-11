@@ -106,6 +106,22 @@ ul.tweets {
     background: #fff; }
     #page-wrapper > .inner > div {
       padding: 0 20px; }
+      #page-wrapper > .inner > div#cb-message-region {
+        width: 95%;
+        padding: 10px;
+        border: 2px solid #d3dce5;
+        margin: 10px auto; }
+        #page-wrapper > .inner > div#cb-message-region .block-title {
+          margin: 0;
+          font-family: vincentregular, Arial, Helvetica, sans-serif; }
+        #page-wrapper > .inner > div#cb-message-region .content {
+          width: 100%;
+          font-size: 13px;
+          font-style: italic; }
+          #page-wrapper > .inner > div#cb-message-region .content form {
+            display: block;
+            width: 100%;
+            margin: 0 auto; }
   #page-wrapper header {
     padding: 0; }
 

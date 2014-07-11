@@ -120,6 +120,35 @@ ul.tweets {
     
     &> div {
       padding: 0 20px;
+      
+      // Message region
+      &#cb-message-region {
+        width: 95%;
+        padding: 10px;
+        border: 2px solid $colSky;
+        margin: 10px auto;
+        
+        .block-title {
+          margin: 0;
+          font-family: $fntSansSpecial;
+        }
+        
+        .content {
+          width: 100%;
+          font: {
+            size: 13px;
+            style: italic;
+          }
+          
+          form {
+            display: block;
+            width: 100%;
+            //max-width: 
+            margin: 0 auto;
+            //text-align: center;
+          }
+        }
+      }
     }
   }
   

@@ -3,6 +3,7 @@ description = Packaged contents for the homepage on corybishopmusic.com
 core = 7.x
 package = CB
 dependencies[] = block
+dependencies[] = cbmusic_site
 dependencies[] = context
 dependencies[] = ctools
 dependencies[] = fe_block
