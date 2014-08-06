@@ -130,7 +130,14 @@ function songkick_artist_calendar_load($artist_id) {
     
     $result = $query->execute();
     
+    $event_dates = array();
     foreach ($result as $row) {
+      // Get the date
+      $ymdh = date('YmjH', $row->time);
+      // Check whether this is a duplicate event and skip ahead if so
+      if (!empty($event_dates[$artist->artist_id][$ymdh])) continue;
+      $event_dates[$artist->artist_id][$ymdh] = $row->eid;
+      
       if (empty($output['events'][$row->eid])) {
         $output['events'][$row->eid] = (object) array(
           'name' => $row->event_name,
