@@ -44,12 +44,17 @@ function cb_home_context_default_contexts() {
           'region' => 'header',
           'weight' => '-8',
         ),
-        'cbmusic_site-buynow_0001' => array(
-          'module' => 'cbmusic_site',
-          'delta' => 'buynow_0001',
-          'region' => 'message',
+        'system-main-menu' => array(
+          'module' => 'system',
+          'delta' => 'main-menu',
+          'region' => 'nav',
           'weight' => '-10',
         ),
+      ),
+    ),
+    'disable_context' => array(
+      'disabled' => array(
+        'global' => 'global',
       ),
     ),
     'theme_html' => array(
