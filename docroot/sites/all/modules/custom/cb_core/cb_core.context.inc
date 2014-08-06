@@ -96,9 +96,9 @@ function cb_core_context_default_contexts() {
   $context->reactions = array(
     'block' => array(
       'blocks' => array(
-        'system-main-menu' => array(
-          'module' => 'system',
-          'delta' => 'main-menu',
+        'menu-menu-main-menu-internal' => array(
+          'module' => 'menu',
+          'delta' => 'menu-main-menu-internal',
           'region' => 'nav',
           'weight' => '-10',
         ),

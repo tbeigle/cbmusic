@@ -4,4 +4,7 @@ dl
 .htpasswd
 log
 tmp
-
+docroot/sites/all/modules/custom/cbmusic_site/songs
+docroot/sites/all/modules/custom/cbmusic_site/songs/*
+docroot/sites/all/modules/custom/cbmusic_site/zips
+docroot/sites/all/modules/custom/cbmusic_site/zips/*
