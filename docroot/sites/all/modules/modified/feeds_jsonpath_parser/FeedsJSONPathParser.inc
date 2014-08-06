@@ -230,7 +230,9 @@ class FeedsJSONPathParser extends FeedsParser {
     $mappings = $this->filterMappings(feeds_importer($this->id)->processor->config['mappings']);
     $next = 0;
     if (!empty($mappings)) {
-      $last_mapping = end(array_keys($mappings));
+      // Fixing "only variables should be passed by reference" warning
+      $mapping_keys = array_keys($mappings);
+      $last_mapping = end($mapping_keys);
       $next = explode(':', $last_mapping);
       $next = $next[1] + 1;
     }
