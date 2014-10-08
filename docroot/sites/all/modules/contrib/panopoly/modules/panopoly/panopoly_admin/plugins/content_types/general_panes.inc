@@ -33,8 +33,8 @@ function panopoly_admin_general_panes_content_type_render($subtype, $conf, $pane
 
   // Build the data for the different panes
   $plugin_data = array();
-  $panels_page_allowed_types = variable_get('panels_page_allowed_types');
-  $panels_page_default_types = variable_get('panels_page_default');
+  $panels_page_allowed_types = variable_get('panels_page_allowed_types', array());
+  $panels_page_default_types = variable_get('panels_page_default', array());
   foreach (ctools_content_get_all_types() as $category_name => $category) {
     foreach ($category as $plugin_name => $plugin) {
       $category_label = (is_string($plugin['category'])) ? $plugin['category'] : $plugin['category'][0];
@@ -59,6 +59,6 @@ function panopoly_admin_general_panes_content_type_render($subtype, $conf, $pane
   // Create the Output
   ksort($plugin_data);
   $pane = new stdClass();
-  $pane->content .= theme('table', array('header' => $header, 'rows' => $plugin_data));
+  $pane->content = theme('table', array('header' => $header, 'rows' => $plugin_data));
   return $pane;
 }

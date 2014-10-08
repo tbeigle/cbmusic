@@ -87,7 +87,7 @@ function panopoly_admin_panels_pane_content_alter($content, $pane, $args, $conte
   $pane->title = (isset($content->title)) ? $content->title : NULL;
 
   // Hide the title of administrative panes when there isn't any content
-  if (!empty($context['argument_node_edit_1']) && !empty($content->content)) {
+  if (!empty($context['argument_node_edit_1']) && !empty($content->content) && is_array($content->content)) {
     foreach($content->content as $content_item) {
       if (is_array($content_item) && isset($content_item['#access']) && $content_item['#access'] === FALSE) {
         $content->title = '';
@@ -165,7 +165,7 @@ function panopoly_admin_form_alter(&$form, &$form_state, $form_id) {
   }
 
   // Move the featured field into publishing options
-  if (!empty($form['field_featured_status'])) {
+  if (!empty($form['field_featured_status']) && $form['options']['#access']) {
     $form['options']['field_featured_status'] = $form['field_featured_status'];
     $form['field_featured_status'] = array('#language' => $form['options']['field_featured_status']['#language']);
   }
@@ -192,8 +192,7 @@ function panopoly_admin_form_alter(&$form, &$form_state, $form_id) {
 
     // Adjust options for Date Popup Module
     if (module_exists('date_popup_authored')) {
-      unset($form['author']['date']['#description']);
-      unset($form['author']['date']['#title']);
+      $form['author']['date']['#title_display'] = 'invisible';
       $form['author']['date']['#size'] = 20;
     }
   }
@@ -206,7 +205,7 @@ function panopoly_admin_form_alter(&$form, &$form_state, $form_id) {
       )
     );
     $form['revision_information']['log']['#weight'] = 10;
-    unset($form['revision_information']['log']['#title']);
+    $form['revision_information']['log']['#title_display'] = 'invisible';
     $form['revision_information']['revision']['#weight'] = 9;
     $form['options']['revision'] = $form['revision_information']['revision'];
     $form['options']['log'] = $form['revision_information']['log'];
@@ -219,7 +218,7 @@ function panopoly_admin_form_alter(&$form, &$form_state, $form_id) {
   if (isset($form['menu']) && isset($form['menu']['enabled']) && $form['menu']['#access']) {
     $form['menu']['link']['link_title']['#size'] = '';
     $form['menu']['link']['weight']['#access'] = FALSE;
-    $form['menu']['link']['link_title']['#title'] = 'Title';
+    $form['menu']['link']['link_title']['#title'] = t('Link title');
     $form['menu']['link']['parent']['#title'] = t('Parent');
     $form['menu']['link']['description']['#access'] = variable_get('panopoly_admin_link_description', FALSE); 
     $form['#validate'][] = 'panopoly_admin_menu_validate';
@@ -589,7 +588,7 @@ function panopoly_admin_is_advanced_plugin($pane_label, $category_label) {
 function panopoly_admin_switch_layout_action($status, $layout_name, $token) {
   
   $commands = array();
-  $panels_page_allowed_layouts = unserialize(variable_get('panels_page_allowed_layouts'));
+  $panels_page_allowed_layouts = unserialize(variable_get('panels_page_allowed_layouts', serialize('')));
   
   if ($token == drupal_get_token($layout_name) && $status == 'enable') {
     $panels_page_allowed_layouts->allowed_layout_settings[$layout_name] = TRUE;
@@ -614,7 +613,7 @@ function panopoly_admin_switch_layout_action($status, $layout_name, $token) {
 function panopoly_admin_switch_pane_action($status, $category_name, $plugin_name, $token) {
 
   $commands = array();
-  $panels_page_allowed_types = variable_get('panels_page_allowed_types');
+  $panels_page_allowed_types = variable_get('panels_page_allowed_types', array());
 
   if ($token == drupal_get_token($plugin_name) && $status == 'enable') {
     $panels_page_allowed_types[$category_name . '-' . $plugin_name] = $category_name . '-' . $plugin_name;

@@ -66,6 +66,7 @@ function void_menu_menu_link_alter(&$item, $menu) {
   }
   else {
     unset($item['options']['unaltered_hidden']);
+    $item['options']['external'] = (url_is_external($item['link_path'])) ? 1 : 0;
   }
 }
 
@@ -93,6 +94,7 @@ function void_menu_translated_menu_link_alter(&$item, $map) {
     }
     else {
       unset($item['options']['unaltered_hidden']);
+      $item['options']['external'] = (url_is_external($item['link_path'])) ? 1 : 0;
     }
 
     $item['href'] = $href;
@@ -149,7 +151,7 @@ function void_menu_form_alter(&$form, $form_state, $form_id) {
   }
   elseif (($form_id == 'menu_edit_item') && isset($form['link_path']['#description'])) {
     global $base_url;
-    $form['link_path']['#description'] .= '<br />***Enter <strong>&lt;void&gt;</strong> or <strong>&lt;void[1-9]&gt; to use your <a href="' . $base_url . '/admin/config/user-interface/void_menu">Custom Links</a>***';
+    $form['link_path']['#description'] .= '<br />***Enter <strong>&lt;void&gt;</strong> or <strong>&lt;void[1-9]&gt;</strong> to use your <a href="' . $base_url . '/admin/config/user-interface/void_menu">Custom Links</a>***';
     if (isset($form['options']['#value']['unaltered_hidden'])) {
       $form['enabled']['#default_value'] = !$form['options']['#value']['unaltered_hidden'];
     }

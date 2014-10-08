@@ -2,7 +2,6 @@ name = Panopoly Core
 description = The magical core of the Panopoly framework.
 core = 7.x
 package = Panopoly
-version = 7.x-1.0-rc5
 project = panopoly_core
 dependencies[] = ctools
 dependencies[] = date
@@ -30,12 +29,12 @@ dependencies[] = pm_existing_pages
 dependencies[] = strongarm
 dependencies[] = taxonomy
 dependencies[] = token
+dependencies[] = transliteration
 dependencies[] = views
 dependencies[] = views_autocomplete_filters
 dependencies[] = views_content
 stylesheets[all][] = css/panopoly-fonts.css
 stylesheets[all][] = css/panopoly-dropbutton.css
-datestamp = 1375305386
 features[ctools][] = panelizer:panelizer:1
 features[ctools][] = strongarm:strongarm:1
 features[ctools][] = views:views_default:3.0
@@ -72,3 +71,10 @@ features[variable][] = page_manager_term_view_disabled
 features[variable][] = panelizer_taxonomy_term:panopoly_categories_allowed_layouts_default
 features[variable][] = panelizer_taxonomy_term:panopoly_categories_allowed_types_default
 features[views_view][] = panopoly_taxonomy
+
+; Information added by Drupal.org packaging script on 2014-08-14
+version = "7.x-1.11"
+core = "7.x"
+project = "panopoly_core"
+datestamp = "1408016637"
+

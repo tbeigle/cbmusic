@@ -5,7 +5,7 @@ core = 7.x
 
 ; Summon the Power of Respond.js
 
-projects[respondjs][version] = 1.2
+projects[respondjs][version] = 1.3
 projects[respondjs][subdir] = contrib
 
 libraries[respondjs][download][type] = get
@@ -13,7 +13,7 @@ libraries[respondjs][download][url] = https://github.com/scottjehl/Respond/tarba
 
 ; Bundle a Few Panopoly Approved Themes
 
-projects[responsive_bartik][version] = 1.0-beta2
+projects[responsive_bartik][version] = 1.0-rc1
 projects[responsive_bartik][type] = theme
 
 ; projects[radix][version] = 1.x-dev
