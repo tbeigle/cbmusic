@@ -546,6 +546,8 @@ label {
     color: #0d1520; }
   .cb-homepage.header-text-left .cb-header-text a:hover, .cb-homepage.header-text-left .cb-header-text a:active, .cb-homepage.header-text-left .cb-header-text a:focus {
     color: #213744; }
+.cb-homepage.new-ep-2014 .cb-header-text {
+  display: none; }
 
 .you-cant-take-me-lyric-video {
   margin-bottom: 20px; }
@@ -697,6 +699,10 @@ label {
   .block.banner-home.single-release .block-title {
     top: 190px;
     font-size: 24px; } }
+@media screen and (max-width: 860px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 70px;
+    font-size: 36px; } }
 @media screen and (max-width: 800px) {
   .cb-homepage #page-wrapper {
     background-size: cover; } }
@@ -711,13 +717,21 @@ label {
     top: 30px;
     width: 50%;
     padding: 0 30px;
-    font-size: 72px; } }
+    font-size: 72px; }
+
+  .block.banner-home.new-ep-link .ep-title {
+    top: 60px;
+    font-size: 30px; } }
 @media screen and (max-width: 650px) {
   .block.banner-home.single-release .block-title {
     top: 180px;
     font-size: 18px; }
   .block.banner-home.single-release .subhead {
-    font-size: 14px; } }
+    font-size: 14px; }
+
+  .block.banner-home.new-ep-link .ep-title {
+    top: 46px;
+    font-size: 24px; } }
 @media screen and (max-width: 565px) {
   .cb-jplayer {
     float: none;
@@ -779,6 +793,10 @@ label {
       width: 100%;
       padding-top: 5px;
       padding-left: 0; } }
+@media screen and (max-width: 540px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 40px;
+    font-size: 20px; } }
 @media screen and (max-width: 460px) {
   .block.social-links .menu {
     text-align: center;
@@ -806,6 +824,10 @@ label {
     display: block;
     float: none;
     width: 100%; } }
+@media screen and (max-width: 430px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 34px;
+    font-size: 16px; } }
 @media screen and (max-width: 400px) {
   .block.social-links .menu li {
     width: 22%;
@@ -848,7 +870,10 @@ label {
     margin: auto; }
 
   .nav-region .nav .content ul {
-    font-size: 16px; } }
+    font-size: 16px; }
+
+  .block.banner-home.new-ep-link .ep-title {
+    top: 16px; } }
 html {
   width: 100%;
   background: url("../../images/cb-textured-bg.jpg") 0 0 repeat;

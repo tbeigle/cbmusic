@@ -38,11 +38,11 @@ function cb_home_context_default_contexts() {
           'region' => 'logo',
           'weight' => '-9',
         ),
-        'block-6' => array(
+        'block-4' => array(
           'module' => 'block',
-          'delta' => '6',
+          'delta' => '4',
           'region' => 'header',
-          'weight' => '-8',
+          'weight' => '-7',
         ),
         'system-main-menu' => array(
           'module' => 'system',
@@ -58,7 +58,7 @@ function cb_home_context_default_contexts() {
       ),
     ),
     'theme_html' => array(
-      'class' => 'header-text-left',
+      'class' => 'new-ep-2014',
     ),
   );
   $context->condition_mode = 0;

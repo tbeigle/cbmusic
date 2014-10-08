@@ -96,6 +96,8 @@
     color: #0d1520; }
   .cb-homepage.header-text-left .cb-header-text a:hover, .cb-homepage.header-text-left .cb-header-text a:active, .cb-homepage.header-text-left .cb-header-text a:focus {
     color: #213744; }
+.cb-homepage.new-ep-2014 .cb-header-text {
+  display: none; }
 
 .you-cant-take-me-lyric-video {
   margin-bottom: 20px; }

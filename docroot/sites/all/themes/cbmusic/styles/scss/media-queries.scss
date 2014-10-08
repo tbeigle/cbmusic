@@ -17,6 +17,13 @@
   }
 }
 
+@media screen and (max-width: 860px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 70px;
+    font-size: 36px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   // Homepage banner
   .cb-homepage {
@@ -42,6 +49,11 @@
     padding: 0 30px;
     font-size: 72px;
   }
+  
+  .block.banner-home.new-ep-link .ep-title {
+    top: 60px;
+    font-size: 30px;
+  }
 }
 
 @media screen and (max-width: 650px) {
@@ -53,6 +65,11 @@
     .subhead {
       font-size: 14px;
     }
+  }
+  
+  .block.banner-home.new-ep-link .ep-title {
+    top: 46px;
+    font-size: 24px;
   }
 }
 
@@ -153,6 +170,13 @@
   }
 }
 
+@media screen and (max-width: 540px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 40px;
+    font-size: 20px;
+  }
+}
+
 @media screen and (max-width: 460px) {
   .block.social-links .menu {
     text-align: center;
@@ -194,6 +218,13 @@
       float: none;
       width: 100%;
     }
+  }
+}
+
+@media screen and (max-width: 430px) {
+  .block.banner-home.new-ep-link .ep-title {
+    top: 34px;
+    font-size: 16px;
   }
 }
 
@@ -257,5 +288,10 @@
   
   .nav-region .nav .content ul {
     font-size: 16px;
+  }
+  
+  .block.banner-home.new-ep-link .ep-title {
+    top: 16px;
+    //font-size: 16px;
   }
 }

@@ -116,7 +116,7 @@
         &:active,
         &:focus {
           .itunes {
-            color: #4d4227;
+            color: $colLnkItns;
           }
         }
       }
@@ -158,6 +158,12 @@
         
         @include hoverActiveFocus(color, $colPreEPBuilding);
       }
+    }
+  }
+  
+  &.new-ep-2014 {
+    .cb-header-text {
+      display: none;
     }
   }
 }
