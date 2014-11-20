@@ -57,10 +57,11 @@ function cb_home_default_page_manager_pages() {
   $display->panel_settings = array();
   $display->cache = array();
   $display->title = 'Cory Bishop';
+  $display->uuid = '6bd0b9e2-4b6c-47ba-9e01-c1f70d9533f6';
   $display->content = array();
   $display->panels = array();
     $pane = new stdClass();
-    $pane->pid = 'new-1';
+    $pane->pid = 'new-55a7dfb4-27c3-4afa-b764-2f6226431111';
     $pane->panel = 'contentmain';
     $pane->type = 'fieldable_panels_pane';
     $pane->subtype = 'fpid:7';
@@ -75,8 +76,9 @@ function cb_home_default_page_manager_pages() {
     $pane->extras = array();
     $pane->position = 0;
     $pane->locks = array();
-    $display->content['new-1'] = $pane;
-    $display->panels['contentmain'][0] = 'new-1';
+    $pane->uuid = '55a7dfb4-27c3-4afa-b764-2f6226431111';
+    $display->content['new-55a7dfb4-27c3-4afa-b764-2f6226431111'] = $pane;
+    $display->panels['contentmain'][0] = 'new-55a7dfb4-27c3-4afa-b764-2f6226431111';
   $display->hide_title = PANELS_TITLE_FIXED;
   $display->title_pane = '0';
   $handler->conf['display'] = $display;
